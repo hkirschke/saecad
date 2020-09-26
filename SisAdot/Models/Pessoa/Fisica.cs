@@ -26,12 +26,12 @@ namespace SisAdot.Models.Pessoa
       set { _cpf = value; }
     }
 
-    private string _rgr;
+    private string _rg;
 
     public string RG
     {
-      get { return _rgr; }
-      set { _rgr = value; }
+      get { return _rg; }
+      set { _rg = value; }
     }
 
     private DateTime _dataNascimento;
