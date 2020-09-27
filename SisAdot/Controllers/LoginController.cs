@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SisAdot.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,12 +7,36 @@ using System.Web.Mvc;
 
 namespace SisAdot.Controllers
 {
-    public class LoginController : Controller
+  public class LoginController : BaseController
+  {  
+    // POST: Login/Autenticar
+    [HttpPost]
+    [AllowAnonymous]
+    public ActionResult Autenticar(Usuario usuario)
     {
-        // GET: Login
-        public ActionResult Index()
+      if (ModelState.IsValid)
+      { 
+        var user = (from userlist in _sisAdotContext.Usuarios
+                    where userlist.Login == usuario.Login && userlist.Senha == usuario.Senha
+                    select new
+                    {
+                      userlist.UsuarioID,
+                      userlist.Login,
+                      userlist.PerfilUsuario,
+                      userlist.Nome
+                    }).ToList();
+        if (user.FirstOrDefault() != null)
         {
-            return View();
+          Session["UserName"] = user.FirstOrDefault().Nome;
+          //Session["UserID"] = user.FirstOrDefault().UsuarioID;
+          return Redirect("/home/index");
         }
-    }
+        else
+        {
+          ModelState.AddModelError("", "Login/senha Inválido");
+        }
+      }
+      return View();
+    } 
+  }
 }

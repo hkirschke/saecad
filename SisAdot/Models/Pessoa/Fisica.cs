@@ -7,7 +7,6 @@ namespace SisAdot.Models.Pessoa
 {
   public class Fisica : Usuario
   { 
-    public string NomePessoa { get; set; } 
     public string CPF { get; set; }
      
     public string RG { get; set; }
