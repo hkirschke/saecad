@@ -1,4 +1,5 @@
-﻿using SisAdot.Models;
+﻿using SisAdot.Enums;
+using SisAdot.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +24,15 @@ namespace SisAdot.Controllers
                       userlist.UsuarioID,
                       userlist.Login,
                       userlist.PerfilUsuario,
-                      userlist.Nome
                     }).ToList();
         if (user.FirstOrDefault() != null)
         {
-          Session["UserName"] = user.FirstOrDefault().Nome;
+          //Session["UserName"] = user.FirstOrDefault().Nome;
           //Session["UserID"] = user.FirstOrDefault().UsuarioID;
-          return Redirect("/home/index");
+          if (user.FirstOrDefault().PerfilUsuario == PerfilUsuario.Administrador)
+              return Redirect("/Usuario/index");
+          else
+            return Redirect("/Home/index");
         }
         else
         {
