@@ -18,7 +18,9 @@ namespace SisAdot.Data
         public SisAdotContext() : base("name=SisAdot")
         {
         }
-
+    /// <summary>
+    /// Lista todos os usuários
+    /// </summary>
     public System.Data.Entity.DbSet<SisAdot.Models.Usuario> Usuarios { get; set; }
   }
 }
