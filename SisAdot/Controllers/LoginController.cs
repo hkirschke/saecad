@@ -11,7 +11,6 @@ namespace SisAdot.Controllers
   public class LoginController : BaseController
   {  
     // POST: Login/Autenticar
-    [HttpPost]
     [AllowAnonymous]
     public ActionResult Autenticar(Usuario usuario)
     {
