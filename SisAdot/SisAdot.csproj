@@ -171,6 +171,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010060001516_PrimeiraMigrations.cs" />
+    <Compile Include="Migrations\202010060001516_PrimeiraMigrations.Designer.cs">
+      <DependentUpon>202010060001516_PrimeiraMigrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Pessoa\Fisica.cs" />
     <Compile Include="Models\Pessoa\Usuario.cs" />
@@ -238,6 +243,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202010060001516_PrimeiraMigrations.resx">
+      <DependentUpon>202010060001516_PrimeiraMigrations.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
