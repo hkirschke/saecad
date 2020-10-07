@@ -8,37 +8,35 @@ using System.Web.Mvc;
 
 namespace SisAdot.Controllers
 {
-  public class LoginController : BaseController
-  {  
-    // POST: Login/Autenticar
-    [AllowAnonymous]
-    public ActionResult Autenticar(Usuario usuario)
+    public class LoginController : BaseController
     {
-      if (ModelState.IsValid)
-      { 
-        var user = (from userlist in _sisAdotContext.Usuarios
-                    where userlist.Login == usuario.Login && userlist.Senha == usuario.Senha
-                    select new
-                    {
-                      userlist.UsuarioID,
-                      userlist.Login,
-                      userlist.PerfilUsuario,
-                    }).ToList();
-        if (user.FirstOrDefault() != null)
+        // POST: Login/Autenticar
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Autenticar(Usuario usuario)
         {
-          //Session["UserName"] = user.FirstOrDefault().Nome;
-          //Session["UserID"] = user.FirstOrDefault().UsuarioID;
-          if (user.FirstOrDefault().PerfilUsuario == PerfilUsuario.Administrador)
-              return Redirect("/Usuario/index");
-          else
-            return Redirect("/Home/index");
-        }
-        else
-        {
-          ModelState.AddModelError("", "Login/senha Inválido");
-        }
-      }
-      return View();
-    } 
-  }
+            var user = (from userlist in _sisAdotContext.Usuarios
+                        where userlist.Login == usuario.Login && userlist.Senha == usuario.Senha
+                        select new
+                        {
+                            userlist.UsuarioID,
+                            userlist.Login,
+                            userlist.PerfilUsuario,
+                        }).ToList();
+            if (user.FirstOrDefault() != null)
+            {
+                //Session["UserName"] = user.FirstOrDefault().Nome;
+                //Session["UserID"] = user.FirstOrDefault().UsuarioID;
+                if (user.FirstOrDefault().PerfilUsuario == PerfilUsuario.Administrador)
+                    return Redirect("/Usuario/index");
+                else
+                    return Redirect("/Home/index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Login/senha Inválido");
+            }
+            return View("Index");
+        } 
+    }
 }

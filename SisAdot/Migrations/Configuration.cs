@@ -1,5 +1,6 @@
 namespace SisAdot.Migrations
 {
+    using SisAdot.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,12 @@ namespace SisAdot.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+              context.Usuarios.AddOrUpdate(
+                p => p.UsuarioID,
+                new Usuario { Login = "admin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Administrador, Senha = "123456", UsuarioID = Guid.NewGuid() },
+                new Usuario { Login = "naoadmin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Adotante, Senha = "123456", UsuarioID = Guid.NewGuid() }
+              );
+
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-@model SisAdot.Models.Usuario
+﻿@model SisAdot.Models.Usuario
 
 @{
     ViewBag.Title = "index";
@@ -74,49 +73,56 @@
                 border: 1px solid;
                 color: rgb(255, 0, 0);
             }
-    </style>
+    </style> 
 </head>
-<body>
+<body> 
 
-    <section class="form my-4 mx-5">
-        <div class="container">
-            <div class="row no-gutters">
-                <div class="col-lg-5">
-                    <img src="../img/pets.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col-lg-7 px-5 pt-5">
-                    <h1 class="font-weight-bold py-3"><img src="../img/logo.svg" class="img-fluid" alt=""></h1>
-                    <h4>Entre com sua conta</h4>
-                    <form>
-                        <div class="form-row">
-                            <div class="col-lg-7">
-                                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control my-3 p-4", placeholder = "Email" }})
+    @using (Html.BeginForm("Autenticar", "Login", FormMethod.Post))
+    {
+        <section class="form my-4 mx-5">
+            <div class="container">
+                <div class="row no-gutters">
+                    <div class="col-lg-5">
+                        <img src="../img/pets.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-7 px-5 pt-5">
+                        <h1 class="font-weight-bold py-3"><img src="../img/logo.svg" class="img-fluid" alt=""></h1>
+                        <h4>Entre com sua conta</h4>
+                        <form>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control my-3 p-4", placeholder = "Login" } })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-lg-7">
-                                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control p-4", placeholder = "Senha", type = "password" } })
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control p-4", placeholder = "Senha", type = "password" } })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-lg-7">
-                                <button type="button" class="btn1 mt-3 mb-1" onclick="location.href='@Url.Action("Autenticar", "Login")'">Logar</button>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <input type="submit" value="Entrar" class="btn1 mt-3 mb-1" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-lg-7">
-                                <button type="button" class="btn2 mb-3"><i class="fab fa-google mr-2"></i>Logar com o Google</button>
-                            </div>
-                        </div>
-                        <p>Ainda não é um herói?<a href='@Url.Action("Create", "Usuario")'> Cadastre-se!</a></p>
-                    </form>
+                            @*<div class="form-row">
+                                    <div class="col-lg-7">
+                                        <button type="submit" class="btn2 mb-3"><i class="fab fa-google mr-2"></i>Entrar com o Google</button>
+                                    </div>
+                                </div>*@
+                            <p>Ainda não é um herói?<a href='@Url.Action("Create", "Usuario")'> Cadastre-se!</a></p>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    }
+     
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
