@@ -175,6 +175,10 @@
     <Compile Include="Migrations\202010060001516_PrimeiraMigrations.Designer.cs">
       <DependentUpon>202010060001516_PrimeiraMigrations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010070314427_PrimeiraMigration.cs" />
+    <Compile Include="Migrations\202010070314427_PrimeiraMigration.Designer.cs">
+      <DependentUpon>202010070314427_PrimeiraMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Pessoa\Fisica.cs" />
@@ -247,6 +251,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202010060001516_PrimeiraMigrations.resx">
       <DependentUpon>202010060001516_PrimeiraMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010070314427_PrimeiraMigration.resx">
+      <DependentUpon>202010070314427_PrimeiraMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
