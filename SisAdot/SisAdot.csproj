@@ -196,6 +196,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\logo.svg" />
     <Content Include="img\pets.jpg" />
+    <Content Include="img\logoprojeto.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="OAuth\OAuthGoogle.json" />
