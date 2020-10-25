@@ -23,12 +23,14 @@ namespace SisAdot.Controllers
                             userlist.Login,
                             userlist.PerfilUsuario,
                         }).ToList();
-            if (user.FirstOrDefault() != null)
+            var usuarioEncontrado = user.FirstOrDefault();
+            if (usuarioEncontrado != null)
             {
-                ViewBag.Perfil = user.FirstOrDefault().PerfilUsuario;
+                TempData["Perfil"] = usuarioEncontrado.PerfilUsuario;
+                //ViewBag.Perfil = user.FirstOrDefault().PerfilUsuario;
                 //Session["UserName"] = user.FirstOrDefault().Nome;
                 //Session["UserID"] = user.FirstOrDefault().UsuarioID;
-                if (user.FirstOrDefault().PerfilUsuario == PerfilUsuario.Administrador) 
+                if (usuarioEncontrado.PerfilUsuario == PerfilUsuario.Administrador) 
                     return Redirect("/Usuario/index");
                 else
                     return Redirect("/Home/index");

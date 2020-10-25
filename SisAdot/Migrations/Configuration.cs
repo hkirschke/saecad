@@ -27,11 +27,11 @@ namespace SisAdot.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-              context.Usuarios.AddOrUpdate(
-                p => p.UsuarioID,
-                new Usuario { Login = "admin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Administrador, Senha = "123456", UsuarioID = Guid.NewGuid() },
-                new Usuario { Login = "naoadmin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Adotante, Senha = "123456", UsuarioID = Guid.NewGuid() }
-              );
+            context.Usuarios.AddOrUpdate(
+              p => p.UsuarioID,
+              new Usuario { Login = "admin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Administrador, Senha = "123456", UsuarioID = new Guid("8807B82C-D6AE-464F-B3A8-1904900F7150") },
+              new Usuario { Login = "naoadmin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Adotante, Senha = "123456", UsuarioID = new Guid("E90C50D7-7C58-4A1F-9C7C-2CD446EDDAF3") }
+            );
 
         }
     }

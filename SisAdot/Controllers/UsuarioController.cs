@@ -16,6 +16,7 @@ namespace SisAdot.Controllers
         // GET: Usuarios
         public override ActionResult Index()
         {
+            
             return View(_sisAdotContext.Usuarios.ToList());
         }
 
@@ -37,6 +38,7 @@ namespace SisAdot.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            ViewBag.Perfil = TempData["Perfil"];
             return View();
         }
 
