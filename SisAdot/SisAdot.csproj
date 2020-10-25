@@ -162,12 +162,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AnimalController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Data\SisAdotContext.cs" />
     <Compile Include="Enums\PerfilUsuario.cs" />
+    <Compile Include="Enums\PorteAnimal.cs" />
+    <Compile Include="Enums\Racas.cs" />
+    <Compile Include="Enums\Situacao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,7 +187,12 @@
     <Compile Include="Migrations\202010251232417_ajusteTabelaUsuario.Designer.cs">
       <DependentUpon>202010251232417_ajusteTabelaUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010251339204_CrudAnimal.cs" />
+    <Compile Include="Migrations\202010251339204_CrudAnimal.Designer.cs">
+      <DependentUpon>202010251339204_CrudAnimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Animal\Animal.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Pessoa\Fisica.cs" />
     <Compile Include="Models\Pessoa\Usuario.cs" />
@@ -235,6 +244,11 @@
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Login\index.cshtml" />
+    <Content Include="Views\Animal\Create.cshtml" />
+    <Content Include="Views\Animal\Delete.cshtml" />
+    <Content Include="Views\Animal\Details.cshtml" />
+    <Content Include="Views\Animal\Edit.cshtml" />
+    <Content Include="Views\Animal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -262,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010251232417_ajusteTabelaUsuario.resx">
       <DependentUpon>202010251232417_ajusteTabelaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010251339204_CrudAnimal.resx">
+      <DependentUpon>202010251339204_CrudAnimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

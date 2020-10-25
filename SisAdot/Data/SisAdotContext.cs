@@ -22,5 +22,7 @@ namespace SisAdot.Data
     /// Lista todos os usuários
     /// </summary>
     public System.Data.Entity.DbSet<SisAdot.Models.Usuario> Usuarios { get; set; }
-  }
+
+        public System.Data.Entity.DbSet<SisAdot.Models.Animal.Animal> Animals { get; set; }
+    }
 }
