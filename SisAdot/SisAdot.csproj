@@ -164,6 +164,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AnimalController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FichaCastracaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -184,19 +185,22 @@
     <Compile Include="Migrations\202010070314427_PrimeiraMigration.Designer.cs">
       <DependentUpon>202010070314427_PrimeiraMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010251232417_ajusteTabelaUsuario.cs" />
-    <Compile Include="Migrations\202010251232417_ajusteTabelaUsuario.Designer.cs">
-      <DependentUpon>202010251232417_ajusteTabelaUsuario.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202010251339204_CrudAnimal.cs" />
     <Compile Include="Migrations\202010251339204_CrudAnimal.Designer.cs">
       <DependentUpon>202010251339204_CrudAnimal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010251722559_AjusteGeralTabelas.cs" />
+    <Compile Include="Migrations\202010251722559_AjusteGeralTabelas.Designer.cs">
+      <DependentUpon>202010251722559_AjusteGeralTabelas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal\Animal.cs" />
     <Compile Include="Models\Endereco.cs" />
+    <Compile Include="Models\FichaCastracao.cs" />
     <Compile Include="Models\Pessoa\Fisica.cs" />
-    <Compile Include="Models\Pessoa\Usuario.cs" />
+    <Compile Include="Models\Pessoa\Juridica.cs" />
+    <Compile Include="Models\Pessoa\Pessoa.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +254,11 @@
     <Content Include="Views\Animal\Details.cshtml" />
     <Content Include="Views\Animal\Edit.cshtml" />
     <Content Include="Views\Animal\Index.cshtml" />
+    <Content Include="Views\FichaCastracao\Create.cshtml" />
+    <Content Include="Views\FichaCastracao\Delete.cshtml" />
+    <Content Include="Views\FichaCastracao\Details.cshtml" />
+    <Content Include="Views\FichaCastracao\Edit.cshtml" />
+    <Content Include="Views\FichaCastracao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,11 +284,11 @@
     <EmbeddedResource Include="Migrations\202010070314427_PrimeiraMigration.resx">
       <DependentUpon>202010070314427_PrimeiraMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010251232417_ajusteTabelaUsuario.resx">
-      <DependentUpon>202010251232417_ajusteTabelaUsuario.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010251339204_CrudAnimal.resx">
       <DependentUpon>202010251339204_CrudAnimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010251722559_AjusteGeralTabelas.resx">
+      <DependentUpon>202010251722559_AjusteGeralTabelas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

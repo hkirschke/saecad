@@ -7,13 +7,13 @@ namespace SisAdot.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ajusteTabelaUsuario : IMigrationMetadata
+    public sealed partial class AjusteGeralTabelas : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ajusteTabelaUsuario));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AjusteGeralTabelas));
         
         string IMigrationMetadata.Id
         {
-            get { return "202010251232417_ajusteTabelaUsuario"; }
+            get { return "202010251722559_AjusteGeralTabelas"; }
         }
         
         string IMigrationMetadata.Source

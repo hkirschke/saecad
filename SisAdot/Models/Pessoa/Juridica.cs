@@ -7,15 +7,15 @@ using System.Web;
 
 namespace SisAdot.Models.Pessoa
 {
-    [Table("PessoaFisica")]
-    public class Fisica: Pessoa
+    [Table("PessoaJuridica")]
+    public class Juridica : Pessoa
     {
         [Key]
         [Required(ErrorMessage = "Obrigatório")]
-        public string CPF { get; set; }
-        public string RG { get; set; }
-        public DateTime DataNascimento { get; set; }
+        public string CNPJ { get; set; }
         [Required(ErrorMessage = "Obrigatório")]
-        public string Nome { get; set; }
+        public string NomeFantasia { get; set; }
+        [Required(ErrorMessage = "Obrigatório")]
+        public string RazaoSocial { get; set; }
     }
 }
