@@ -14,14 +14,14 @@ namespace SisAdot.Data
         // automatically whenever you change your model schema, please use data migrations.
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
-    
+
         public SisAdotContext() : base("name=SisAdot")
         {
         }
-    /// <summary>
-    /// Lista todos os usuários
-    /// </summary>
-    public System.Data.Entity.DbSet<SisAdot.Models.Usuario> Usuarios { get; set; }
+        /// <summary>
+        /// Lista todos os usuários
+        /// </summary>
+        public System.Data.Entity.DbSet<SisAdot.Models.Usuario> Usuarios { get; set; }
 
         public System.Data.Entity.DbSet<SisAdot.Models.Animal.Animal> Animals { get; set; }
     }

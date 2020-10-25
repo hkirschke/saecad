@@ -25,9 +25,10 @@ namespace SisAdot.Controllers
                         }).ToList();
             if (user.FirstOrDefault() != null)
             {
+                ViewBag.Perfil = user.FirstOrDefault().PerfilUsuario;
                 //Session["UserName"] = user.FirstOrDefault().Nome;
                 //Session["UserID"] = user.FirstOrDefault().UsuarioID;
-                if (user.FirstOrDefault().PerfilUsuario == PerfilUsuario.Administrador)
+                if (user.FirstOrDefault().PerfilUsuario == PerfilUsuario.Administrador) 
                     return Redirect("/Usuario/index");
                 else
                     return Redirect("/Home/index");

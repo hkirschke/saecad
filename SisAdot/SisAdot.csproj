@@ -172,6 +172,7 @@
     <Compile Include="Enums\PorteAnimal.cs" />
     <Compile Include="Enums\Racas.cs" />
     <Compile Include="Enums\Situacao.cs" />
+    <Compile Include="Enums\TipoPessoa.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
