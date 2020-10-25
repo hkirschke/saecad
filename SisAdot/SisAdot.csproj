@@ -179,6 +179,10 @@
     <Compile Include="Migrations\202010070314427_PrimeiraMigration.Designer.cs">
       <DependentUpon>202010070314427_PrimeiraMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010251232417_ajusteTabelaUsuario.cs" />
+    <Compile Include="Migrations\202010251232417_ajusteTabelaUsuario.Designer.cs">
+      <DependentUpon>202010251232417_ajusteTabelaUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Pessoa\Fisica.cs" />
@@ -255,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010070314427_PrimeiraMigration.resx">
       <DependentUpon>202010070314427_PrimeiraMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010251232417_ajusteTabelaUsuario.resx">
+      <DependentUpon>202010251232417_ajusteTabelaUsuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
