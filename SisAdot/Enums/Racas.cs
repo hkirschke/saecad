@@ -4,6 +4,8 @@ namespace SisAdot.Enums
 {
     public enum Racas
     {
+        [Description("Vira-Lata")]
+        Viralata = 0,
         Akita,
         [Description("Basset Hound")]
         BassetHound,

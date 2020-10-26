@@ -1,6 +1,7 @@
 namespace SisAdot.Migrations
 {
     using SisAdot.Models;
+    using SisAdot.Models.Animal;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -16,6 +17,8 @@ namespace SisAdot.Migrations
 
         protected override void Seed(SisAdot.Data.SisAdotContext context)
         {
+            var UsuarioAdmin = new Guid("8807B82C-D6AE-464F-B3A8-1904900F7150");
+            var UsuarioNaoAdmin = new Guid("E90C50D7-7C58-4A1F-9C7C-2CD446EDDAF3");
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -30,10 +33,24 @@ namespace SisAdot.Migrations
             // 
             context.Usuarios.AddOrUpdate(
               p => p.UsuarioID,
-              new Usuario { Login = "admin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Administrador, Senha = "123456", UsuarioID = new Guid("8807B82C-D6AE-464F-B3A8-1904900F7150") },
-              new Usuario { Login = "naoadmin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Adotante, Senha = "123456", UsuarioID = new Guid("E90C50D7-7C58-4A1F-9C7C-2CD446EDDAF3") }
+              new Usuario { Login = "admin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Administrador, Senha = "123456", UsuarioID = UsuarioAdmin },
+              new Usuario { Login = "naoadmin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Adotante, Senha = "123456", UsuarioID = UsuarioNaoAdmin }
             );
 
+            context.Animals.AddOrUpdate(
+                a => a.UsuarioID,
+                new Animal
+                {
+                    UsuarioID = UsuarioAdmin,
+                    Idade = 2,
+                    RacaAnimal = Enums.Racas.Viralata,
+                    Situacao = Enums.Situacao.DonoProprio,
+                    Nome = "Teste",
+                    TamanhoAnimal = Enums.PorteAnimal.Medio,
+                    Resenha = "Teste",
+                    AnimalID = new Guid("8fd7c807-84e7-4791-8e35-ba757df6f068")
+                }
+                );
         }
     }
 }
