@@ -13,12 +13,21 @@ namespace SisAdot.Controllers
 {
     public class AnimalController : BaseController
     {
-        private SisAdotContext db = new SisAdotContext();
-
         // GET: Animal
         public override ActionResult Index()
         {
-            return View(db.Animals.ToList());
+            var animaisUsuario = (from animalList in _sisAdotContext.Animals.ToList()
+                                  where animalList.UsuarioID == new Guid(TempData["UsuarioID"].ToString())
+                                  select new
+                                  {
+                                      animalList.Nome,
+                                      animalList.Idade,
+                                      animalList.TamanhoAnimal,
+                                      animalList.RacaAnimal,
+                                      animalList.Situacao
+                                  }).ToList();
+
+            return View(animaisUsuario);
         }
 
         // GET: Animal/Details/5
@@ -28,7 +37,7 @@ namespace SisAdot.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Animal animal = db.Animals.Find(id);
+            Animal animal = _sisAdotContext.Animals.Find(id);
             if (animal == null)
             {
                 return HttpNotFound();
@@ -52,8 +61,8 @@ namespace SisAdot.Controllers
             if (ModelState.IsValid)
             {
                 animal.AnimalID = Guid.NewGuid();
-                db.Animals.Add(animal);
-                db.SaveChanges();
+                _sisAdotContext.Animals.Add(animal);
+                _sisAdotContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +76,7 @@ namespace SisAdot.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Animal animal = db.Animals.Find(id);
+            Animal animal = _sisAdotContext.Animals.Find(id);
             if (animal == null)
             {
                 return HttpNotFound();
@@ -84,8 +93,8 @@ namespace SisAdot.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(animal).State = EntityState.Modified;
-                db.SaveChanges();
+                _sisAdotContext.Entry(animal).State = EntityState.Modified;
+                _sisAdotContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(animal);
@@ -98,7 +107,7 @@ namespace SisAdot.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Animal animal = db.Animals.Find(id);
+            Animal animal = _sisAdotContext.Animals.Find(id);
             if (animal == null)
             {
                 return HttpNotFound();
@@ -111,9 +120,9 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Animal animal = db.Animals.Find(id);
-            db.Animals.Remove(animal);
-            db.SaveChanges();
+            Animal animal = _sisAdotContext.Animals.Find(id);
+            _sisAdotContext.Animals.Remove(animal);
+            _sisAdotContext.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -121,7 +130,7 @@ namespace SisAdot.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _sisAdotContext.Dispose();
             }
             base.Dispose(disposing);
         }

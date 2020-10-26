@@ -13,9 +13,7 @@ namespace SisAdot.Models
         [Key]
         public Guid CastracaoID { get; set; }
         public DateTime DataEntrada { get; set; }
-        public DateTime DataSaida { get; set; }
-        [Key]
-        [ForeignKey("UsuarioID")]
-        public ICollection<Guid> UsuarioID { get; set; }
+        public DateTime DataSaida { get; set; } 
+        public Guid UsuarioID { get; set; }
     }
 }

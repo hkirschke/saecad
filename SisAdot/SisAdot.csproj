@@ -198,6 +198,10 @@
     <Compile Include="Migrations\202010261110333_TableEndereco.Designer.cs">
       <DependentUpon>202010261110333_TableEndereco.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010261256199_fk_tabela_ficha_animal.cs" />
+    <Compile Include="Migrations\202010261256199_fk_tabela_ficha_animal.Designer.cs">
+      <DependentUpon>202010261256199_fk_tabela_ficha_animal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal\Animal.cs" />
     <Compile Include="Models\Endereco.cs" />
@@ -302,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010261110333_TableEndereco.resx">
       <DependentUpon>202010261110333_TableEndereco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010261256199_fk_tabela_ficha_animal.resx">
+      <DependentUpon>202010261256199_fk_tabela_ficha_animal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

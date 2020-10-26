@@ -13,12 +13,19 @@ namespace SisAdot.Controllers
 {
     public class FichaCastracaoController : BaseController
     {
-        private SisAdotContext db = new SisAdotContext();
-
         // GET: FichaCastracao
         public override ActionResult Index()
         {
-            return View(db.FichaCastracaos.ToList());
+            var agendamentosUsuario = (from agendamentosList in _sisAdotContext.FichaCastracaos.ToList()
+                                where agendamentosList.UsuarioID == new Guid(TempData["UsuarioID"].ToString())
+                        select new
+                        {
+                            agendamentosList.CastracaoID,
+                            agendamentosList.DataEntrada,
+                            agendamentosList.DataSaida,
+                        }).ToList(); 
+
+            return View(agendamentosUsuario);
         }
 
         // GET: FichaCastracao/Details/5
@@ -28,7 +35,7 @@ namespace SisAdot.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FichaCastracao fichaCastracao = db.FichaCastracaos.Find(id);
+            FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
             if (fichaCastracao == null)
             {
                 return HttpNotFound();
@@ -52,8 +59,8 @@ namespace SisAdot.Controllers
             if (ModelState.IsValid)
             {
                 fichaCastracao.CastracaoID = Guid.NewGuid();
-                db.FichaCastracaos.Add(fichaCastracao);
-                db.SaveChanges();
+                _sisAdotContext.FichaCastracaos.Add(fichaCastracao);
+                _sisAdotContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +74,7 @@ namespace SisAdot.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FichaCastracao fichaCastracao = db.FichaCastracaos.Find(id);
+            FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
             if (fichaCastracao == null)
             {
                 return HttpNotFound();
@@ -84,8 +91,8 @@ namespace SisAdot.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(fichaCastracao).State = EntityState.Modified;
-                db.SaveChanges();
+                _sisAdotContext.Entry(fichaCastracao).State = EntityState.Modified;
+                _sisAdotContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(fichaCastracao);
@@ -98,7 +105,7 @@ namespace SisAdot.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FichaCastracao fichaCastracao = db.FichaCastracaos.Find(id);
+            FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
             if (fichaCastracao == null)
             {
                 return HttpNotFound();
@@ -111,9 +118,9 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            FichaCastracao fichaCastracao = db.FichaCastracaos.Find(id);
-            db.FichaCastracaos.Remove(fichaCastracao);
-            db.SaveChanges();
+            FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
+            _sisAdotContext.FichaCastracaos.Remove(fichaCastracao);
+            _sisAdotContext.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -121,7 +128,7 @@ namespace SisAdot.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _sisAdotContext.Dispose();
             }
             base.Dispose(disposing);
         }

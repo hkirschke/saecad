@@ -11,6 +11,7 @@ namespace SisAdot.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            //AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(SisAdot.Data.SisAdotContext context)
@@ -26,7 +27,7 @@ namespace SisAdot.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            //
+            // 
             context.Usuarios.AddOrUpdate(
               p => p.UsuarioID,
               new Usuario { Login = "admin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Administrador, Senha = "123456", UsuarioID = new Guid("8807B82C-D6AE-464F-B3A8-1904900F7150") },

@@ -13,9 +13,7 @@ namespace SisAdot.Models.Animal
     {
         [Key]
         public Guid AnimalID { get; set; }
-        [Key]
-        [ForeignKey("UsuarioID")]
-        public ICollection<Guid> UsuarioID { get; set; }
+        public Guid UsuarioID { get; set; }
         [Required(ErrorMessage = "Obrigatório")]
         public PorteAnimal TamanhoAnimal { get; set; }
         [Required(ErrorMessage = "Obrigatório")]
