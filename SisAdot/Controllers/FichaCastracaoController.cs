@@ -8,22 +8,23 @@ using System.Web;
 using System.Web.Mvc;
 using SisAdot.Data;
 using SisAdot.Models;
+using SisAdot.Models.Animal;
 
 namespace SisAdot.Controllers
 {
     public class FichaCastracaoController : BaseController
-    { 
+    {
         // GET: FichaCastracao
         public override ActionResult Index()
         {
             var agendamentosUsuario = (from agendamentosList in _sisAdotContext.FichaCastracaos.ToList()
-                                where agendamentosList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
-                        select new
-                        {
-                            agendamentosList.CastracaoID,
-                            agendamentosList.DataEntrada,
-                            agendamentosList.DataSaida,
-                        }).ToList(); 
+                                       where agendamentosList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
+                                       select new
+                                       {
+                                           agendamentosList.CastracaoID,
+                                           agendamentosList.DataEntrada,
+                                           agendamentosList.DataSaida,
+                                       }).ToList();
 
             return View(agendamentosUsuario);
         }
@@ -46,6 +47,14 @@ namespace SisAdot.Controllers
         // GET: FichaCastracao/Create
         public ActionResult Create()
         {
+            var animais = (from animalList in _sisAdotContext.Animals.ToList()
+                           where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
+                           select new
+                           {
+                               animalList.AnimalID,
+                               animalList.Nome
+                           }).ToList();
+            ViewBag.Animais = animais;
             return View();
         }
 

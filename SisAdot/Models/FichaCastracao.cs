@@ -15,5 +15,7 @@ namespace SisAdot.Models
         public DateTime DataEntrada { get; set; }
         public DateTime DataSaida { get; set; } 
         public Guid UsuarioID { get; set; }
+
+        public Guid AnimalID { get; set; }
     }
 }
