@@ -14,6 +14,6 @@ namespace SisAdot.Models
         public int Numero { get; set; }
         public string Telefone { get; set; }
         public string Celular { get; set; }
-        public string complemento { get; set; }
+        public string Complemento { get; set; }
     }
 }

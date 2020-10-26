@@ -164,6 +164,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AnimalController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EnderecoController.cs" />
     <Compile Include="Controllers\FichaCastracaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -192,6 +193,10 @@
     <Compile Include="Migrations\202010251722559_AjusteGeralTabelas.cs" />
     <Compile Include="Migrations\202010251722559_AjusteGeralTabelas.Designer.cs">
       <DependentUpon>202010251722559_AjusteGeralTabelas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010261110333_TableEndereco.cs" />
+    <Compile Include="Migrations\202010261110333_TableEndereco.Designer.cs">
+      <DependentUpon>202010261110333_TableEndereco.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal\Animal.cs" />
@@ -259,6 +264,11 @@
     <Content Include="Views\FichaCastracao\Details.cshtml" />
     <Content Include="Views\FichaCastracao\Edit.cshtml" />
     <Content Include="Views\FichaCastracao\Index.cshtml" />
+    <Content Include="Views\Endereco\Create.cshtml" />
+    <Content Include="Views\Endereco\Delete.cshtml" />
+    <Content Include="Views\Endereco\Details.cshtml" />
+    <Content Include="Views\Endereco\Edit.cshtml" />
+    <Content Include="Views\Endereco\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010251722559_AjusteGeralTabelas.resx">
       <DependentUpon>202010251722559_AjusteGeralTabelas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010261110333_TableEndereco.resx">
+      <DependentUpon>202010261110333_TableEndereco.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

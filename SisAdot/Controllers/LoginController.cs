@@ -27,9 +27,7 @@ namespace SisAdot.Controllers
             if (usuarioEncontrado != null)
             {
                 TempData["Perfil"] = usuarioEncontrado.PerfilUsuario;
-                //ViewBag.Perfil = user.FirstOrDefault().PerfilUsuario;
-                //Session["UserName"] = user.FirstOrDefault().Nome;
-                //Session["UserID"] = user.FirstOrDefault().UsuarioID;
+                TempData["UsuarioID"] = usuarioEncontrado.UsuarioID;
                 if (usuarioEncontrado.PerfilUsuario == PerfilUsuario.Administrador) 
                     return Redirect("/Usuario/index");
                 else

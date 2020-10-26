@@ -26,5 +26,7 @@ namespace SisAdot.Data
         public System.Data.Entity.DbSet<SisAdot.Models.Animal.Animal> Animals { get; set; }
 
         public System.Data.Entity.DbSet<SisAdot.Models.FichaCastracao> FichaCastracaos { get; set; }
+
+        public System.Data.Entity.DbSet<SisAdot.Models.Endereco> Enderecoes { get; set; }
     }
 }
