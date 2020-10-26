@@ -15,5 +15,23 @@ namespace SisAdot.Models
         public string Telefone { get; set; }
         public string Celular { get; set; }
         public string Complemento { get; set; }
+
+
+        public Endereco()
+        {
+
+        }
+
+        public Endereco(Guid ID)
+        {
+            UsuarioID = ID;
+            Bairro = "";
+            Rua = "";
+            CEP = "";
+            Numero = 0;
+            Telefone = "";
+            Celular = "";
+            Complemento = "";
+        }
     }
 }

@@ -21,9 +21,7 @@ namespace SisAdot.Migrations
                     Foto = c.Binary(),
                     UsuarioID = c.Guid(nullable: false)
                 })
-                .PrimaryKey(t => t.AnimalID)
-                .ForeignKey("Usuario", t => t.UsuarioID);
-
+                .PrimaryKey(t => t.AnimalID);
         }
 
         public override void Down()

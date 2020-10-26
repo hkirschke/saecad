@@ -30,6 +30,22 @@ namespace SisAdot.Controllers
             return View(animaisUsuario);
         }
 
+        public ActionResult AnimaisDoacoes()
+        {
+            var animaisDoacao = (from animalList in _sisAdotContext.Animals.ToList()
+                                 where animalList.Situacao == Enums.Situacao.Disponível
+                                 select new
+                                 {
+                                     animalList.Nome,
+                                     animalList.Idade,
+                                     animalList.TamanhoAnimal,
+                                     animalList.RacaAnimal,
+                                     animalList.Situacao
+                                 }).ToList();
+
+            return View("Index", animaisDoacao);
+        }
+
         // GET: Animal/Details/5
         public ActionResult Details(Guid? id)
         {

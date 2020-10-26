@@ -61,7 +61,7 @@ namespace SisAdot.Controllers
         // GET: Endereco/Edit/
         public ActionResult Edit()
         {
-            var id = Session["UsuarioID"];
+            var id = new Guid(Session["UsuarioID"].ToString());
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -69,7 +69,7 @@ namespace SisAdot.Controllers
             Endereco endereco = _sisAdotContext.Enderecoes.Find(id);
             if (endereco == null)
             {
-                return HttpNotFound();
+                endereco = new Endereco(id);
             }
             return View(endereco);
         }
