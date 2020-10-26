@@ -12,12 +12,12 @@ using SisAdot.Models;
 namespace SisAdot.Controllers
 {
     public class FichaCastracaoController : BaseController
-    {
+    { 
         // GET: FichaCastracao
         public override ActionResult Index()
         {
             var agendamentosUsuario = (from agendamentosList in _sisAdotContext.FichaCastracaos.ToList()
-                                where agendamentosList.UsuarioID == new Guid(TempData["UsuarioID"].ToString())
+                                where agendamentosList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
                         select new
                         {
                             agendamentosList.CastracaoID,
@@ -58,6 +58,7 @@ namespace SisAdot.Controllers
         {
             if (ModelState.IsValid)
             {
+                fichaCastracao.UsuarioID = new Guid(Session["UsuarioID"].ToString());
                 fichaCastracao.CastracaoID = Guid.NewGuid();
                 _sisAdotContext.FichaCastracaos.Add(fichaCastracao);
                 _sisAdotContext.SaveChanges();

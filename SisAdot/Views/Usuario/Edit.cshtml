@@ -19,7 +19,7 @@
         @Html.HiddenFor(model => model.UsuarioID)
 
 
-        @if (ViewBag.Perfil == SisAdot.Enums.PerfilUsuario.Administrador)
+        @if (Session["Perfil"].Equals(SisAdot.Enums.PerfilUsuario.Administrador))
         {
             <div class="form-group">
                 @Html.LabelFor(model => model.PerfilUsuario, htmlAttributes: new { @class = "control-label col-md-2" })

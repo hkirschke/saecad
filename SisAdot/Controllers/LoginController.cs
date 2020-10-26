@@ -26,9 +26,9 @@ namespace SisAdot.Controllers
             var usuarioEncontrado = user.FirstOrDefault();
             if (usuarioEncontrado != null)
             {
-                TempData["Perfil"] = usuarioEncontrado.PerfilUsuario;
-                TempData["UsuarioID"] = usuarioEncontrado.UsuarioID;
-                if (usuarioEncontrado.PerfilUsuario == PerfilUsuario.Administrador) 
+                Session["Perfil"] = usuarioEncontrado.PerfilUsuario;
+                Session["UsuarioID"] = usuarioEncontrado.UsuarioID;
+                if (usuarioEncontrado.PerfilUsuario == PerfilUsuario.Administrador)
                     return Redirect("/Usuario/index");
                 else
                     return Redirect("/Home/index");
@@ -38,6 +38,14 @@ namespace SisAdot.Controllers
                 ModelState.AddModelError("", "Login/senha Inválido");
             }
             return View("Index");
-        } 
+        }
+
+        public override ActionResult Index()
+        {
+            Session["Perfil"] = PerfilUsuario.Adotante;
+            Session["UsuarioID"] = "";
+            return base.Index();
+        }
+
     }
 }

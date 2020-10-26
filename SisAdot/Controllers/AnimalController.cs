@@ -17,7 +17,7 @@ namespace SisAdot.Controllers
         public override ActionResult Index()
         {
             var animaisUsuario = (from animalList in _sisAdotContext.Animals.ToList()
-                                  where animalList.UsuarioID == new Guid(TempData["UsuarioID"].ToString())
+                                  where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
                                   select new
                                   {
                                       animalList.Nome,
@@ -61,6 +61,7 @@ namespace SisAdot.Controllers
             if (ModelState.IsValid)
             {
                 animal.AnimalID = Guid.NewGuid();
+                animal.UsuarioID = new Guid(Session["UsuarioID"].ToString());
                 _sisAdotContext.Animals.Add(animal);
                 _sisAdotContext.SaveChanges();
                 return RedirectToAction("Index");

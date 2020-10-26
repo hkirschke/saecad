@@ -61,7 +61,7 @@ namespace SisAdot.Controllers
         // GET: Endereco/Edit/
         public ActionResult Edit()
         {
-            var id = TempData["UsuarioID"];
+            var id = Session["UsuarioID"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -81,7 +81,7 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UsuarioID,Bairro,Rua,CEP,Numero,Telefone,Celular,complemento")] Endereco endereco)
         {
-            var id = TempData["UsuarioID"];
+            var id = Session["UsuarioID"];
 
             Endereco enderecoEncontrado = _sisAdotContext.Enderecoes.Find(id);
             if (ModelState.IsValid)
