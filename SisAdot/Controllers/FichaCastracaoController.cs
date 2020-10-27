@@ -17,14 +17,9 @@ namespace SisAdot.Controllers
         // GET: FichaCastracao
         public override ActionResult Index()
         {
-            var agendamentosUsuario = (from agendamentosList in _sisAdotContext.FichaCastracaos.ToList()
-                                       where agendamentosList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
-                                       select new
-                                       {
-                                           agendamentosList.CastracaoID,
-                                           agendamentosList.DataEntrada,
-                                           agendamentosList.DataSaida,
-                                       }).ToList();
+            List<FichaCastracao> agendamentosUsuario = (from agendamentosList in _sisAdotContext.FichaCastracaos.ToList()
+                                                        where agendamentosList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
+                                                        select new FichaCastracao { }).ToList();
 
             return View(agendamentosUsuario);
         }

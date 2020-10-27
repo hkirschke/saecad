@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-           Perfil
+            Perfil
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Login)
@@ -27,26 +27,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PerfilUsuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Senha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UsuarioID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UsuarioID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UsuarioID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PerfilUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Senha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UsuarioID }, new { htmlAttributes = new { @class = "btn1 mt-3 mb-1" } }) |
+                @Html.ActionLink("Details", "Details", new { id = item.UsuarioID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UsuarioID })
+            </td>
+        </tr>
+    }
 
 </table>

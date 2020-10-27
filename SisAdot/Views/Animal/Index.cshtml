@@ -13,58 +13,61 @@
 <table class="table">
     <tr>
         <th>
-            Porte
-        </th>
-        <th>
-            Raça
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Idade)
         </th>
         <th>
+            Porte
+        </th>
+        <th>
+            Raça
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Situacao)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Resenha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Foto)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Resenha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>*@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TamanhoAnimal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RacaAnimal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Idade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Situacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Resenha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Foto)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AnimalID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AnimalID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AnimalID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Idade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TamanhoAnimal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RacaAnimal)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Situacao)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Resenha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Foto)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AnimalID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AnimalID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AnimalID })
+            </td>
+        </tr>
+    }
 
 </table>

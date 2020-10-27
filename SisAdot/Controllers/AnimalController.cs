@@ -6,7 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using Microsoft.Win32;
 using SisAdot.Data;
+using SisAdot.Models;
 using SisAdot.Models.Animal;
 
 namespace SisAdot.Controllers
@@ -16,16 +19,9 @@ namespace SisAdot.Controllers
         // GET: Animal
         public override ActionResult Index()
         {
-            var animaisUsuario = (from animalList in _sisAdotContext.Animals.ToList()
-                                  where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
-                                  select new
-                                  {
-                                      animalList.Nome,
-                                      animalList.Idade,
-                                      animalList.TamanhoAnimal,
-                                      animalList.RacaAnimal,
-                                      animalList.Situacao
-                                  }).ToList();
+            List<Animal> animaisUsuario = (from animalList in _sisAdotContext.Animals.ToList()
+                                           where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
+                                           select new Animal { }).ToList();
 
             return View(animaisUsuario);
         }
@@ -34,14 +30,7 @@ namespace SisAdot.Controllers
         {
             var animaisDoacao = (from animalList in _sisAdotContext.Animals.ToList()
                                  where animalList.Situacao == Enums.Situacao.Disponível
-                                 select new
-                                 {
-                                     animalList.Nome,
-                                     animalList.Idade,
-                                     animalList.TamanhoAnimal,
-                                     animalList.RacaAnimal,
-                                     animalList.Situacao
-                                 }).ToList();
+                                 select new Animal { }).ToList();
 
             return View("Index", animaisDoacao);
         }
@@ -77,7 +66,7 @@ namespace SisAdot.Controllers
             if (ModelState.IsValid)
             {
                 animal.AnimalID = Guid.NewGuid();
-                animal.UsuarioID = new Guid(Session["UsuarioID"].ToString());
+                if (animal.Situacao == Enums.Situacao.DonoProprio) animal.UsuarioID = new Guid(Session["UsuarioID"].ToString());
                 _sisAdotContext.Animals.Add(animal);
                 _sisAdotContext.SaveChanges();
                 return RedirectToAction("Index");
