@@ -20,17 +20,35 @@ namespace SisAdot.Controllers
         public override ActionResult Index()
         {
             List<Animal> animaisUsuario = (from animalList in _sisAdotContext.Animals.ToList()
-                                           where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
-                                           select new Animal { }).ToList();
+                                  where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
+                                  select new Animal
+                                  {
+                                      AnimalID = animalList.AnimalID,
+                                      Nome = animalList.Nome,
+                                      Idade = animalList.Idade,
+                                      Situacao = animalList.Situacao,
+                                      RacaAnimal = animalList.RacaAnimal,
+                                      TamanhoAnimal = animalList.TamanhoAnimal,
+                                      UsuarioID = animalList.UsuarioID
+                                  }).ToList();
 
             return View(animaisUsuario);
         }
 
         public ActionResult AnimaisDoacoes()
         {
-            var animaisDoacao = (from animalList in _sisAdotContext.Animals.ToList()
-                                 where animalList.Situacao == Enums.Situacao.Disponível
-                                 select new Animal { }).ToList();
+            List<Animal> animaisDoacao = (from animalList in _sisAdotContext.Animals.ToList()
+                                  where animalList.Situacao == Enums.Situacao.Disponível
+                                  select new Animal
+                                  {
+                                      AnimalID = animalList.AnimalID,
+                                      Nome = animalList.Nome,
+                                      Idade = animalList.Idade,
+                                      Situacao = animalList.Situacao,
+                                      RacaAnimal = animalList.RacaAnimal,
+                                      TamanhoAnimal = animalList.TamanhoAnimal,
+                                      UsuarioID = animalList.UsuarioID
+                                  }).ToList();
 
             return View("Index", animaisDoacao);
         }
@@ -139,6 +157,23 @@ namespace SisAdot.Controllers
                 _sisAdotContext.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // GET: Animal/Adotar/5
+        [ActionName("Adotar")]
+        public ActionResult Adotar(Guid? animalID)
+        {
+            if (animalID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Animal animal = _sisAdotContext.Animals.Find(animalID);
+            animal.UsuarioID = new Guid(Session["UsuarioID"].ToString());
+            animal.Situacao = Enums.Situacao.Adotado;
+
+            _sisAdotContext.Entry(animal).State = EntityState.Modified;
+            _sisAdotContext.SaveChanges();
+            return View(animal);
         }
     }
 }

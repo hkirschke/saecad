@@ -94,7 +94,6 @@ namespace SisAdot.Controllers
                 }
                 else
                 {
-                    _sisAdotContext.Entry(endereco).State = EntityState.Modified;
                     _sisAdotContext.SaveChanges();
                     return RedirectToAction("Edit");
                 }

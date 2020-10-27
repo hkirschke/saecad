@@ -18,8 +18,17 @@ namespace SisAdot.Controllers
         public override ActionResult Index()
         {
             List<FichaCastracao> agendamentosUsuario = (from agendamentosList in _sisAdotContext.FichaCastracaos.ToList()
+                                                        join animalList in _sisAdotContext.Animals.ToList()
+                                                        on agendamentosList.AnimalID equals animalList.AnimalID
                                                         where agendamentosList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
-                                                        select new FichaCastracao { }).ToList();
+                                                        select new FichaCastracao
+                                                        {
+                                                            UsuarioID = agendamentosList.UsuarioID,
+                                                            AnimalID = animalList.AnimalID,
+                                                            CastracaoID = agendamentosList.CastracaoID,
+                                                            DataEntrada = agendamentosList.DataEntrada,
+                                                            DataSaida = agendamentosList.DataSaida
+                                                        }).ToList();
 
             return View(agendamentosUsuario);
         }

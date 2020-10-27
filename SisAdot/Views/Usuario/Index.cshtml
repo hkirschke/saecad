@@ -42,12 +42,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.UsuarioID }, new { htmlAttributes = new { @class = "btn1 mt-3 mb-1" } }) |
-                @Html.ActionLink("Details", "Details", new { id = item.UsuarioID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UsuarioID })
+            <td> 
+                @Html.ActionLink("Edit", "Edit", "Usuario", new { id = item.UsuarioID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Details", "Details", "Usuario", new { id = item.UsuarioID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Delete", "Usuario", new { id = item.UsuarioID }, new { @class = "btn btn-primary" })
             </td>
         </tr>
     }
-
 </table>

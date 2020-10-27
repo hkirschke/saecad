@@ -63,9 +63,14 @@
                     @Html.DisplayFor(modelItem => item.Foto)
                 </td>*@
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AnimalID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AnimalID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AnimalID })
+                @Html.ActionLink("Edit", "Edit", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Details", "Details", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Delete", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
+
+                @if (!Session["UsuarioID"].ToString().Equals(item.UsuarioID.ToString()))
+                {
+                    @Html.ActionLink("Adotar", "Adotar", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
+                }
             </td>
         </tr>
     }

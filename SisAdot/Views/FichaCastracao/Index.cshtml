@@ -18,7 +18,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DataSaida)
         </th>
-        <th></th>
+        <th>
+            Animal
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -30,9 +32,12 @@
             @Html.DisplayFor(modelItem => item.DataSaida)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CastracaoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CastracaoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CastracaoID })
+
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "FichaCastracao", new { id=item.CastracaoID }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Details", "Details", "FichaCastracao", new { id=item.CastracaoID }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Delete", "Delete", "FichaCastracao", new { id=item.CastracaoID }, new { @class = "btn btn-primary" })
         </td>
     </tr>
 }
