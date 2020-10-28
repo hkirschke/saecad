@@ -1,4 +1,4 @@
-﻿@model SisAdot.Models.Animal.Animal
+﻿@model SisAdot.Models.Animal.AnimalViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -8,10 +8,11 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Animal",
+    FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Animal</h4>
         <hr />
@@ -65,10 +66,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.Foto, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Foto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(m => m.Foto, new { type = "file", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Foto, "", new { @class = "text-danger" })
             </div>
         </div>
 
