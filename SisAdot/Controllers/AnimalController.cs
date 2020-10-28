@@ -177,15 +177,6 @@ namespace SisAdot.Controllers
                 if (!imageTypes.Contains(imagem.ContentType))
                     ModelState.AddModelError("ImageUpload", "Escolha uma iamgem GIF, JPG ou PNG.");
             }
-             
-            //if (imagem == null || imagem.ContentLength == 0)
-            //{
-            //    ModelState.AddModelError("ImageUpload", "Este campo é obrigatório");
-            //}
-            //else if (!imageTypes.Contains(imagem.ContentType))
-            //{
-            //    ModelState.AddModelError("ImageUpload", "Escolha uma iamgem GIF, JPG ou PNG.");
-            //}
         }
 
         // GET: Animal/Delete/5
