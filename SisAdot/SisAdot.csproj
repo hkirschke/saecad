@@ -168,6 +168,7 @@
     <Compile Include="Controllers\FichaCastracaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Data\SisAdotContext.cs" />
     <Compile Include="Enums\PerfilUsuario.cs" />
@@ -205,6 +206,10 @@
     <Compile Include="Migrations\202010261835256_animalID_Ficha.cs" />
     <Compile Include="Migrations\202010261835256_animalID_Ficha.Designer.cs">
       <DependentUpon>202010261835256_animalID_Ficha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010291250048_tablePessoa.cs" />
+    <Compile Include="Migrations\202010291250048_tablePessoa.Designer.cs">
+      <DependentUpon>202010291250048_tablePessoa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal\Animal.cs" />
@@ -279,6 +284,11 @@
     <Content Include="Views\Endereco\Details.cshtml" />
     <Content Include="Views\Endereco\Edit.cshtml" />
     <Content Include="Views\Endereco\Index.cshtml" />
+    <Content Include="Views\Pessoa\Create.cshtml" />
+    <Content Include="Views\Pessoa\Delete.cshtml" />
+    <Content Include="Views\Pessoa\Details.cshtml" />
+    <Content Include="Views\Pessoa\Edit.cshtml" />
+    <Content Include="Views\Pessoa\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010261835256_animalID_Ficha.resx">
       <DependentUpon>202010261835256_animalID_Ficha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010291250048_tablePessoa.resx">
+      <DependentUpon>202010291250048_tablePessoa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -52,10 +52,10 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" /> 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script> 
-    <script src="~/Scripts/popper.min.js"></script> 
-    <script src="~/Scripts/bootstrap.min.js"></script>*@
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/popper.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -74,12 +74,13 @@
                     {
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Usuários
+                                Controle de Usuários
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Usuários", "Index", "Usuario")</li>
                                 <li>@Html.ActionLink("Criar Usuário", "Create", "Usuario")</li>
+                                @*<li>@Html.ActionLink("Cadastro de Pessoa", "Index", "Pessoa")</li>*@
                             </ul>
                         </li>
                     }
@@ -93,8 +94,19 @@
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animais <span class="caret"></span> </a>
                         <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cadastrar Animal", "Create", "Animal")</li>
                             <li>@Html.ActionLink("Meus Animais", "Index", "Animal")</li>
                             <li>@Html.ActionLink("Animais para doação", "AnimaisDoacoes", "Animal")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Cadastro de Pessoa
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Física", "EditFisica", "Pessoa")</li>
+                            <li>@Html.ActionLink("Jurídica", "EditJuridica", "Pessoa")</li>
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Endereço", "Edit", "Endereco")</li>
