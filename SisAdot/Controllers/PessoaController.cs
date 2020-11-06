@@ -117,24 +117,37 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PessoaID,UsuarioID,TipoPessoa,Documento,Descricao,Complemento,DataNascimento")] Pessoa pessoa)
         {
+            var id = new Guid(Session["UsuarioID"].ToString());
             pessoa.TipoPessoa = ViewBag.TipoPessoa;
-
+            Pessoa pessoaEncontrado = _sisAdotContext.Pessoas.Find(id);
             if (ModelState.IsValid)
             {
-                _sisAdotContext.Entry(pessoa).State = EntityState.Modified;
-                _sisAdotContext.SaveChanges();
-                return RedirectToAction("Index");
+                if (pessoaEncontrado == null)
+                {
+                    _sisAdotContext.Pessoas.Add(pessoa);
+                    _sisAdotContext.SaveChanges();
+                }
+                else
+                {
+                    _sisAdotContext.Entry(pessoa).State = EntityState.Modified;
+                    _sisAdotContext.SaveChanges();
+                }
             }
-            return View(pessoa);
+
+            if (ViewBag.TipoPessoa.Equals(TipoPessoa.Fisica))
+                return RedirectToAction("EditFisica", pessoa);
+            else
+                return RedirectToAction("EditJuridica", pessoa);
         }
 
         // GET: Pessoa/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            var id = new Guid(Session["UsuarioID"].ToString());
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
             Pessoa pessoa = _sisAdotContext.Pessoas.Find(id);
             if (pessoa == null)
             {
@@ -146,12 +159,18 @@ namespace SisAdot.Controllers
         // POST: Pessoa/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed()
         {
+            var id = new Guid(Session["UsuarioID"].ToString());
             Pessoa pessoa = _sisAdotContext.Pessoas.Find(id);
             _sisAdotContext.Pessoas.Remove(pessoa);
             _sisAdotContext.SaveChanges();
-            return RedirectToAction("Index");
+            pessoa = new Pessoa();
+
+            if (ViewBag.TipoPessoa.Equals(TipoPessoa.Fisica))
+                return RedirectToAction("EditFisica", pessoa);
+            else
+                return RedirectToAction("EditJuridica", pessoa);
         }
 
         protected override void Dispose(bool disposing)

@@ -13,23 +13,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UsuarioID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UsuarioID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoPessoa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoPessoa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Documento)
+            @if (ViewBag.TipoPessoa.Equals(SisAdot.Enums.TipoPessoa.Fisica))
+            {
+                @Html.LabelFor(model => model.Documento, "CPF", htmlAttributes: new { @class = "control-label col-md-2" })
+            }
+            else
+            {
+                @Html.LabelFor(model => model.Documento, "CNPJ", htmlAttributes: new { @class = "control-label col-md-2" })
+            }
         </dt>
 
         <dd>
@@ -37,7 +28,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
+            @if (ViewBag.TipoPessoa.Equals(SisAdot.Enums.TipoPessoa.Fisica))
+            {
+                @Html.LabelFor(model => model.Descricao, "Nome", htmlAttributes: new { @class = "control-label col-md-2" })
+            }
+            else
+            {
+                @Html.LabelFor(model => model.Descricao, "Nome Fantasia", htmlAttributes: new { @class = "control-label col-md-2" })
+            }
         </dt>
 
         <dd>
@@ -45,24 +43,33 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Complemento)
+            @if (ViewBag.TipoPessoa.Equals(SisAdot.Enums.TipoPessoa.Fisica))
+            {
+                @Html.LabelFor(model => model.ComplementoDoc, "RG", htmlAttributes: new { @class = "control-label col-md-2" })
+            }
+            else
+            {
+                @Html.LabelFor(model => model.ComplementoDoc, "Razão Social", htmlAttributes: new { @class = "control-label col-md-2" })
+            }
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Complemento)
+            @Html.DisplayFor(model => model.ComplementoDoc)
         </dd>
+        @if (ViewBag.TipoPessoa.Equals(SisAdot.Enums.TipoPessoa.Fisica))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DataNascimento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataNascimento)
-        </dd>
-
+            <dd>
+                @Html.DisplayFor(model => model.DataNascimento)
+            </dd>
+        }
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

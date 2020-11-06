@@ -12,7 +12,7 @@ using SisAdot.Models;
 namespace SisAdot.Controllers
 {
     public class EnderecoController : BaseController
-    { 
+    {
         // GET: Endereco
         public override ActionResult Index()
         {
@@ -81,7 +81,7 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UsuarioID,Bairro,Rua,CEP,Numero,Telefone,Celular,complemento")] Endereco endereco)
         {
-            var id = Session["UsuarioID"];
+            var id = new Guid(Session["UsuarioID"].ToString());
 
             Endereco enderecoEncontrado = _sisAdotContext.Enderecoes.Find(id);
             if (ModelState.IsValid)
@@ -103,12 +103,13 @@ namespace SisAdot.Controllers
         }
 
         // GET: Endereco/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            var id = new Guid(Session["UsuarioID"].ToString());
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
             Endereco endereco = _sisAdotContext.Enderecoes.Find(id);
             if (endereco == null)
             {
@@ -120,12 +121,13 @@ namespace SisAdot.Controllers
         // POST: Endereco/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed()
         {
+            var id = new Guid(Session["UsuarioID"].ToString());
             Endereco endereco = _sisAdotContext.Enderecoes.Find(id);
             _sisAdotContext.Enderecoes.Remove(endereco);
             _sisAdotContext.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit");
         }
 
         protected override void Dispose(bool disposing)
