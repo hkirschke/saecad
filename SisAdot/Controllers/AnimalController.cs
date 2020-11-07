@@ -19,20 +19,25 @@ namespace SisAdot.Controllers
         // GET: Animal
         public override ActionResult Index()
         {
-            List<AnimalViewModel> animaisUsuario = (from animalList in _sisAdotContext.Animals.ToList()
-                                                    where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
-                                                    select new AnimalViewModel
-                                                    {
-                                                        AnimalID = animalList.AnimalID,
-                                                        Nome = animalList.Nome,
-                                                        Idade = animalList.Idade,
-                                                        Situacao = animalList.Situacao,
-                                                        RacaAnimal = animalList.RacaAnimal,
-                                                        TamanhoAnimal = animalList.TamanhoAnimal,
-                                                        UsuarioID = animalList.UsuarioID
-                                                    }).ToList();
+            List<AnimalViewModel> animaisUsuario = GetAnimaisUsuario();
 
             return View(animaisUsuario);
+        }
+
+        private List<AnimalViewModel> GetAnimaisUsuario()
+        {
+            return (from animalList in _sisAdotContext.Animals.ToList()
+                    where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
+                    select new AnimalViewModel
+                    {
+                        AnimalID = animalList.AnimalID,
+                        Nome = animalList.Nome,
+                        Idade = animalList.Idade,
+                        Situacao = animalList.Situacao,
+                        RacaAnimal = animalList.RacaAnimal,
+                        TamanhoAnimal = animalList.TamanhoAnimal,
+                        UsuarioID = animalList.UsuarioID
+                    }).ToList();
         }
 
         public ActionResult AnimaisDoacoes()
@@ -79,15 +84,18 @@ namespace SisAdot.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AnimalID,TamanhoAnimal,RacaAnimal,Nome,Idade,Situacao,Resenha,Foto")] AnimalViewModel animalVM)
+        public ActionResult Create([Bind(Include = "AnimalID,TamanhoAnimal,RacaAnimal,Nome,Idade,Situacao,Resenha,ByteFoto,Imagem")] AnimalViewModel animalVM)
         {
-            ValidaImagemModel(animalVM.Foto);
+            ValidaImagemModel(animalVM.Imagem);
             Animal animal = new Animal();
 
             if (ModelState.IsValid)
             {
-                using (var binaryReader = new System.IO.BinaryReader(animalVM.Foto.InputStream))
-                    animal.Foto = binaryReader.ReadBytes(animalVM.Foto.ContentLength);
+                if (animalVM.Imagem != null)
+                {
+                    using (var binaryReader = new System.IO.BinaryReader(animalVM.Imagem.InputStream))
+                        animal.Foto = binaryReader.ReadBytes(animalVM.Imagem.ContentLength);
+                }
 
                 animal.AnimalID = Guid.NewGuid();
                 animal.Nome = animalVM.Nome;
@@ -98,6 +106,7 @@ namespace SisAdot.Controllers
                 animal.Idade = animalVM.Idade;
 
                 if (animal.Situacao == Enums.Situacao.DonoProprio) animal.UsuarioID = new Guid(Session["UsuarioID"].ToString());
+
                 _sisAdotContext.Animals.Add(animal);
                 _sisAdotContext.SaveChanges();
                 return RedirectToAction("Index");
@@ -126,7 +135,9 @@ namespace SisAdot.Controllers
                 Situacao = animal.Situacao,
                 TamanhoAnimal = animal.TamanhoAnimal,
                 Resenha = animal.Resenha,
-                Idade = animal.Idade
+                Idade = animal.Idade,
+                ByteFoto = animal.Foto,
+                UsuarioID = animal.UsuarioID
             };
             return View(animalViewModel);
         }
@@ -136,9 +147,9 @@ namespace SisAdot.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AnimalID,TamanhoAnimal,RacaAnimal,Nome,Idade,Situacao,Resenha,Foto")] AnimalViewModel animalVM)
+        public ActionResult Edit([Bind(Include = "AnimalID,TamanhoAnimal,RacaAnimal,Nome,Idade,Situacao,Resenha,ByteFoto,Imagem, UsuarioID")] AnimalViewModel animalVM)
         {
-            ValidaImagemModel(animalVM.Foto);
+            ValidaImagemModel(animalVM.Imagem);
             if (ModelState.IsValid)
             {
                 Animal animal = new Animal
@@ -149,11 +160,18 @@ namespace SisAdot.Controllers
                     Situacao = animalVM.Situacao,
                     TamanhoAnimal = animalVM.TamanhoAnimal,
                     Resenha = animalVM.Resenha,
-                    Idade = animalVM.Idade
+                    Idade = animalVM.Idade,
+                    Foto = animalVM.ByteFoto
                 };
 
-                using (var binaryReader = new System.IO.BinaryReader(animalVM.Foto.InputStream))
-                    animal.Foto = binaryReader.ReadBytes(animalVM.Foto.ContentLength);
+                if (animalVM.UsuarioID != null)
+                    animal.UsuarioID = new Guid(animalVM.UsuarioID.ToString());
+
+                if (animalVM.Imagem != null)
+                {
+                    using (var binaryReader = new System.IO.BinaryReader(animalVM.Imagem.InputStream))
+                        animal.Foto = binaryReader.ReadBytes(animalVM.Imagem.ContentLength);
+                }
 
                 _sisAdotContext.Entry(animal).State = EntityState.Modified;
                 _sisAdotContext.SaveChanges();
@@ -171,11 +189,13 @@ namespace SisAdot.Controllers
                     "image/png"
                     ,"image/x-icon"
                 };
-
-            if (imagem != null || imagem.ContentLength > 0)
+            if (imagem != null)
             {
-                if (!imageTypes.Contains(imagem.ContentType))
-                    ModelState.AddModelError("ImageUpload", "Escolha uma iamgem GIF, JPG ou PNG.");
+                if (imagem.ContentLength > 0)
+                {
+                    if (!imageTypes.Contains(imagem.ContentType))
+                        ModelState.AddModelError("ImageUpload", "Escolha uma iamgem GIF, JPG ou PNG.");
+                }
             }
         }
 
@@ -214,21 +234,20 @@ namespace SisAdot.Controllers
             base.Dispose(disposing);
         }
 
-        // GET: Animal/Adotar/5
-        [ActionName("Adotar")]
-        public ActionResult Adotar(Guid? animalID)
+        public ActionResult Adotar(Guid? id)
         {
-            if (animalID == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Animal animal = _sisAdotContext.Animals.Find(animalID);
+            Animal animal = _sisAdotContext.Animals.Find(id);
             animal.UsuarioID = new Guid(Session["UsuarioID"].ToString());
             animal.Situacao = Enums.Situacao.Adotado;
 
             _sisAdotContext.Entry(animal).State = EntityState.Modified;
             _sisAdotContext.SaveChanges();
-            return View(animal);
+            List<AnimalViewModel> animaisUsuario = GetAnimaisUsuario();
+            return View("Index", animaisUsuario);
         }
     }
 }

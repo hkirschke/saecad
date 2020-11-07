@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SisAdot.Models.FichaCastracao>
+﻿@model IEnumerable<SisAdot.Models.FichaCastracaoViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DataEntrada)
+           Entrada
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DataSaida)
+           Saída
         </th>
         <th>
             Animal
@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.DataSaida)
         </td>
         <td>
-
+            @Html.DisplayFor(modelItem => item.NomeAnimal)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", "FichaCastracao", new { id=item.CastracaoID }, new { @class = "btn btn-primary" }) 

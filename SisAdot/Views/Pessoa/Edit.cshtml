@@ -76,10 +76,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-2">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" onclick = "return confirm('Deseja atualizar o registro ?');" />
             </div>
             <div class="col-md-2">
-                @Html.ActionLink("Excluir", "Delete", "Pessoa", new { @class = "btn btn-primary" })
+                @Html.ActionLink("Excluir", "Delete", "Pessoa", new { @class = "btn btn-primary" , onclick = "return confirm('Deseja adotar o animal ?');" })
             </div>
         </div>
     </div>

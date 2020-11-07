@@ -8,7 +8,7 @@ using System.Web;
 namespace SisAdot.Models.Animal
 {
     public class AnimalViewModel
-    { 
+    {
         public Guid AnimalID { get; set; }
         public Guid? UsuarioID { get; set; }
 
@@ -25,6 +25,8 @@ namespace SisAdot.Models.Animal
         public string Resenha { get; set; }
 
         [DataType(DataType.Upload)]
-        public HttpPostedFileBase Foto { get; set; }
+        public HttpPostedFileBase Imagem { get; set; }
+
+        public byte[] ByteFoto { get; set; }
     }
 }
