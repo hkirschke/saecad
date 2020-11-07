@@ -62,7 +62,8 @@ namespace SisAdot.Controllers
                            {
                                animalList.AnimalID,
                                animalList.Nome
-                           }).ToList();
+                           }).ToList(); 
+
             ViewBag.Animais = animais;
         }
 

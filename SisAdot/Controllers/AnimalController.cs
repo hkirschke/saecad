@@ -20,7 +20,7 @@ namespace SisAdot.Controllers
         public override ActionResult Index()
         {
             List<AnimalViewModel> animaisUsuario = GetAnimaisUsuario();
-
+            ViewBag.Title = "Meus Animais";
             return View(animaisUsuario);
         }
 
@@ -44,6 +44,7 @@ namespace SisAdot.Controllers
         {
             List<AnimalViewModel> animaisDoacao = (from animalList in _sisAdotContext.Animals.ToList()
                                                    where animalList.Situacao == Enums.Situacao.Disponível
+                                                   //&& (animalList.UsuarioID != new Guid(Session["UsuarioID"].ToString()) || animalList.UsuarioID != new Guid("00000000-0000-0000-0000-000000000000"))
                                                    select new AnimalViewModel
                                                    {
                                                        AnimalID = animalList.AnimalID,
@@ -54,7 +55,7 @@ namespace SisAdot.Controllers
                                                        TamanhoAnimal = animalList.TamanhoAnimal,
                                                        UsuarioID = animalList.UsuarioID
                                                    }).ToList();
-
+            ViewBag.Title = "Animais para doação";
             return View("Index", animaisDoacao);
         }
 
