@@ -28,9 +28,9 @@ namespace SisAdot.Controllers
             {
                 Session["Perfil"] = usuarioEncontrado.PerfilUsuario;
                 Session["UsuarioID"] = usuarioEncontrado.UsuarioID;
-                if (usuarioEncontrado.PerfilUsuario == PerfilUsuario.Administrador)
-                    return Redirect("/Usuario/index");
-                else
+                //if (usuarioEncontrado.PerfilUsuario == PerfilUsuario.Administrador)
+                //    return Redirect("/Usuario/index");
+                //else
                     return Redirect("/Home/index");
             }
             else

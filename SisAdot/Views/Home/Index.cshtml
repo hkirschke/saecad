@@ -3,30 +3,156 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    @*<link rel="stylesheet" type="text/css" href="resources/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/fontawesome/css/all.css">
+        <script type='text/javascript' src="resources/jquery/jquery-3.5.1.slim.min.js"></script>
+        <script type='text/javascript' src="resources/bootstrap/popper.min.js"></script>
+        <script type='text/javascript' src="resources/bootstrap/bootstrap.min.js"></script>*@
+    <link rel="stylesheet" href="~/styles/footer.css">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <!-- Website CSS style -->
+    <link rel="stylesheet" type="stylesheet" href="~/styles/template.css">
+    <title>Seja um Herói - Home</title>
+</head>
+
+<body>
+
+    <hr>
+    <div class="row">
+
+        <div class="col-8">
+            <h1>Animais Disponíveis para adoção</h1>
+        </div>
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <hr>
+
+
+    <div class="row">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/bulldog.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Bulldog</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/corgi.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Corgi</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/salsicha.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Salsicha</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/shitsu.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Shitsu</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/pug.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Pug</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/lulu.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Lulu</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <!-- Site footer -->
+    <footer class="footer-distributed">
+        <hr>
+        <div class="footer-left">
+            <span><img src="~/img/logoprojeto.png" width="100" height="30" alt=""></span>
+            <p class="footer-links">
+                <a href="#" class="link-1">Home</a>
+                <a href="#">Blog</a>
+                <a href="#">Cases</a>
+                <a href="#">Números</a>
+                <a href="#">Contribuir</a>
+                <a href="#">Sobre-nos</a>
+                <a href="#">Contato</a>
+            </p>
+            <p class="footer-company-name">seja um herói © 2020 Todos os direitos reservados</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">contato@sejaumheroi.com.br</a></p>
+            </div>
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>Sobre</span>
+                Seja um herói! Adote um pet e seja o herói dele. Ele vai ser seu fâ para sempre.<br />
+                Buscamos facilitar o trabalho dos heróis.
+            </p>
+
+            <div class="footer-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+
+        </div>
+
+    </footer>
+
+    @*<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>*@
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>*@
+    <script src="~/Scripts/popper.min.js"></script>
+    @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!-- partial -->
+</body>
+</html>

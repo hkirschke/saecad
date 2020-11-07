@@ -232,9 +232,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\bulldog.jpg" />
+    <Content Include="img\corgi.jpg" />
     <Content Include="img\logo.svg" />
+    <Content Include="img\lulu.jpg" />
     <Content Include="img\pets.jpg" />
     <Content Include="img\logoprojeto.png" />
+    <Content Include="img\pug.jpg" />
+    <Content Include="img\salsicha.jpg" />
+    <Content Include="img\shitsu.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="OAuth\OAuthGoogle.json" />
@@ -250,6 +256,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="styles\footer.css" />
+    <Content Include="styles\login.css" />
+    <Content Include="styles\template.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
