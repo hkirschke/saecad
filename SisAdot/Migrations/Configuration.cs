@@ -54,7 +54,7 @@ namespace SisAdot.Migrations
                {
                    Idade = 2,
                    RacaAnimal = Enums.Racas.ChowChow,
-                   Situacao = Enums.Situacao.Disponível,
+                   Situacao = Enums.Situacao.Disponivel,
                    Nome = "Teste2",
                    TamanhoAnimal = Enums.PorteAnimal.Medio,
                    Resenha = "Teste2",
@@ -64,7 +64,7 @@ namespace SisAdot.Migrations
                 {
                     Idade = 2,
                     RacaAnimal = Enums.Racas.Boxer,
-                    Situacao = Enums.Situacao.Disponível,
+                    Situacao = Enums.Situacao.Disponivel,
                     Nome = "Teste3",
                     TamanhoAnimal = Enums.PorteAnimal.Pequeno,
                     Resenha = "Teste3",

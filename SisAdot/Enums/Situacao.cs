@@ -10,8 +10,9 @@ namespace SisAdot.Enums
     public enum Situacao
     {
         Adotado,
-        Disponível,
-        [Display(Name = "Dono Próprio")]
+        [Display(Name = "Disponível", Description = "Disponível")]
+        Disponivel,
+        [Display(Name = "Dono Próprio", Description = "Dono Próprio")]
         DonoProprio
     }
 }

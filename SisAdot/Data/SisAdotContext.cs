@@ -39,7 +39,7 @@ namespace SisAdot.Data
         public List<AnimalViewModel> AnimaisDoacoes()
         {
             List<AnimalViewModel> animaisDoacao = (from animalList in this.Animals.ToList()
-                                                   where animalList.Situacao == Enums.Situacao.Disponível
+                                                   where animalList.Situacao == Enums.Situacao.Disponivel
                                                    select new AnimalViewModel
                                                    {
                                                        AnimalID = animalList.AnimalID,

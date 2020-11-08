@@ -8,7 +8,7 @@
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar um animal", "Create")
 </p>
 <table class="table">
     <tr>
@@ -26,7 +26,10 @@
         </th>
         <th>
             Situação
-        </th> 
+        </th>
+        <th>
+            Vacinas
+        </th>
         <th></th>
     </tr>
 
@@ -49,6 +52,16 @@
 
             <td>
                 @Html.DisplayFor(modelItem => item.Situacao)
+            </td>
+            <td>
+                @if (item.StatusVacina)
+                {
+                    <span>Em dia</span>
+                }
+                else
+                {
+                    <span>Com pendência</span>
+                }
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
