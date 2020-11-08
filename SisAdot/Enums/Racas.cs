@@ -1,69 +1,70 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SisAdot.Enums
 {
     public enum Racas
     {
-        [Description("Vira-Lata")]
+        [Display(Name = "Vira-Lata")]
         Viralata = 0,
         Akita,
-        [Description("Basset Hound")]
+        [Display(Name = "Basset Hound")]
         BassetHound,
         Beagle,
-        [Description("Bichon Frisé")]
+        [Display(Name = "Bichon Frisé")]
         BichonFrisé,
-        [Description("Boiadeiro Australiano")]
+        [Display(Name = "Boiadeiro Australiano")]
         BoiadeiroAustraliano,
-        [Description("Border Collie")]
+        [Display(Name = "Border Collie")]
         BorderCollie,
-        [Description("Boston Terrier")]
+        [Display(Name = "Boston Terrier")]
         BostonTerrier,
         Boxer,
-        [Description("Boiadeiro Australiano")]
+        [Display(Name = "Boiadeiro Australiano")]
         BuldogueFrancês,
-        [Description("Buldogue Inglês")]
+        [Display(Name = "Buldogue Inglês")]
         BuldogueInglês,
-        [Description("Bull Terrier")]
+        [Display(Name = "Bull Terrier")]
         BullTerrier,
-        [Description("Cane Corso")]
+        [Display(Name = "Cane Corso")]
         CaneCorso,
-        [Description("Cavalier King Charles")]
+        [Display(Name = "Cavalier King Charles")]
         CavalierKingCharles,
         Chihuahua,
         ChowChow,
-        [Description("Cocker Spaniel Inglês")]
+        [Display(Name = "Cocker Spaniel Inglês")]
         CockerSpanielInglês,
         Dachshund,
         Dálmata,
         Doberman,
-        [Description("Dogo Argentino")]
+        [Display(Name = "Dogo Argentino")]
         DogoArgentino,
-        [Description("Dogue Alemão")]
+        [Display(Name = "Dogue Alemão")]
         DogueAlemão,
-        [Description("Fila Brasileiro")]
+        [Display(Name = "Fila Brasileiro")]
         FilaBrasileiro,
-        [Description("Golden Retriever")]
+        [Display(Name = "Golden Retriever")]
         GoldenRetriever,
-        [Description("Husky Siberiano")]
+        [Display(Name = "Husky Siberiano")]
         HuskySiberiano,
-        [Description("JackRussell Terrier")]
+        [Display(Name = "JackRussell Terrier")]
         JackRussellTerrier,
-        [Description("Labrador Retriever")]
+        [Display(Name = "Labrador Retriever")]
         LabradorRetriever,
-        [Description("Lhasa Apso")]
+        [Display(Name = "Lhasa Apso")]
         LhasaApso,
-        [Description("Lulu da Pomerânia")]
+        [Display(Name = "Lulu da Pomerânia")]
         LuluPomerânia,
         Maltês,
-        [Description("Mastiff Inglês")]
+        [Display(Name = "Mastiff Inglês")]
         MastiffInglês,
-        [Description("Mastim Tibetano")]
+        [Display(Name = "Mastim Tibetano")]
         MastimTibetano,
-        [Description("Pastor Alemão")]
+        [Display(Name = "Pastor Alemão")]
         PastorAlemão,
-        [Description("Pastor Australiano")]
+        [Display(Name = "Pastor Australiano")]
         PastorAustraliano,
-        [Description("Pastor Shetland")]
+        [Display(Name = "Pastor Shetland")]
         PastorShetland,
         Pequinês,
         Pinscher,
@@ -72,12 +73,12 @@ namespace SisAdot.Enums
         Pug,
         Rottweiler,
         Schnauzer,
-        [Description("Shar-Pei")]
+        [Display(Name = "Shar-Pei")]
         SharPei,
         Shiba,
-        [Description("Shih-Tzu")]
+        [Display(Name = "Shih-Tzu")]
         ShihTzu,
-        [Description("Staffordshire bull terrier")]
+        [Display(Name = "Staffordshire bull terrier")]
         Staffordshire,
         Weimaraner,
         Yorkshire

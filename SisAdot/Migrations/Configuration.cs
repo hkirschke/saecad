@@ -48,7 +48,8 @@ namespace SisAdot.Migrations
                     Nome = "Teste",
                     TamanhoAnimal = Enums.PorteAnimal.Medio,
                     Resenha = "Teste",
-                    AnimalID = new Guid("8fd7c807-84e7-4791-8e35-ba757df6f068")
+                    AnimalID = new Guid("8fd7c807-84e7-4791-8e35-ba757df6f068"),
+                    StatusVacina = false
                 },
                new Animal
                {
@@ -58,7 +59,8 @@ namespace SisAdot.Migrations
                    Nome = "Teste2",
                    TamanhoAnimal = Enums.PorteAnimal.Medio,
                    Resenha = "Teste2",
-                   AnimalID = new Guid("d793b9c9-1e7c-4625-8c8d-80ae57db99c5")
+                   AnimalID = new Guid("d793b9c9-1e7c-4625-8c8d-80ae57db99c5"),
+                   StatusVacina = false
                },
                 new Animal
                 {
@@ -68,7 +70,8 @@ namespace SisAdot.Migrations
                     Nome = "Teste3",
                     TamanhoAnimal = Enums.PorteAnimal.Pequeno,
                     Resenha = "Teste3",
-                    AnimalID = new Guid("c59270c9-bf04-41f0-891a-4d6bcc5b2c88")
+                    AnimalID = new Guid("c59270c9-bf04-41f0-891a-4d6bcc5b2c88"),
+                    StatusVacina = true
                 }
                );
         }

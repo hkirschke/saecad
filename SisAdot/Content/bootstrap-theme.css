@@ -372,6 +372,8 @@ fieldset[disabled] .btn-danger.active {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   border-radius: 4px;
 }
+
+
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .active > a {
   background-image: -webkit-linear-gradient(top, #080808 0%, #0f0f0f 100%);

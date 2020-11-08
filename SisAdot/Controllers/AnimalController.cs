@@ -19,42 +19,14 @@ namespace SisAdot.Controllers
         // GET: Animal
         public override ActionResult Index()
         {
-            List<AnimalViewModel> animaisUsuario = GetAnimaisUsuario();
+            List<AnimalViewModel> animaisUsuario = _sisAdotContext.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
             ViewBag.Title = "Meus Animais";
             return View(animaisUsuario);
         }
 
-        private List<AnimalViewModel> GetAnimaisUsuario()
-        {
-            return (from animalList in _sisAdotContext.Animals.ToList()
-                    where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
-                    select new AnimalViewModel
-                    {
-                        AnimalID = animalList.AnimalID,
-                        Nome = animalList.Nome,
-                        Idade = animalList.Idade,
-                        Situacao = animalList.Situacao,
-                        RacaAnimal = animalList.RacaAnimal,
-                        TamanhoAnimal = animalList.TamanhoAnimal,
-                        UsuarioID = animalList.UsuarioID
-                    }).ToList();
-        }
-
         public ActionResult AnimaisDoacoes()
         {
-            List<AnimalViewModel> animaisDoacao = (from animalList in _sisAdotContext.Animals.ToList()
-                                                   where animalList.Situacao == Enums.Situacao.Disponível
-                                                   //&& (animalList.UsuarioID != new Guid(Session["UsuarioID"].ToString()) || animalList.UsuarioID != new Guid("00000000-0000-0000-0000-000000000000"))
-                                                   select new AnimalViewModel
-                                                   {
-                                                       AnimalID = animalList.AnimalID,
-                                                       Nome = animalList.Nome,
-                                                       Idade = animalList.Idade,
-                                                       Situacao = animalList.Situacao,
-                                                       RacaAnimal = animalList.RacaAnimal,
-                                                       TamanhoAnimal = animalList.TamanhoAnimal,
-                                                       UsuarioID = animalList.UsuarioID
-                                                   }).ToList();
+            List<AnimalViewModel> animaisDoacao = _sisAdotContext.AnimaisDoacoes();
             ViewBag.Title = "Animais para doação";
             return View("Index", animaisDoacao);
         }
@@ -247,7 +219,7 @@ namespace SisAdot.Controllers
 
             _sisAdotContext.Entry(animal).State = EntityState.Modified;
             _sisAdotContext.SaveChanges();
-            List<AnimalViewModel> animaisUsuario = GetAnimaisUsuario();
+            List<AnimalViewModel> animaisUsuario = _sisAdotContext.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
             return View("Index", animaisUsuario);
         }
     }
