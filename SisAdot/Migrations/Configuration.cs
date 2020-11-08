@@ -12,7 +12,7 @@ namespace SisAdot.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            //AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(SisAdot.Data.SisAdotContext context)

@@ -25,14 +25,8 @@
             Raça
         </th>
         <th>
-           Situação
-        </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.Resenha)
-            </th>*@
-        @*<th>
-                @Html.DisplayNameFor(model => model.Foto)
-            </th>*@
+            Situação
+        </th> 
         <th></th>
     </tr>
 
@@ -56,22 +50,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Situacao)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Resenha)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Foto)
-                </td>*@
-            @*@if (item.Foto != null)
-                {
-                    <td>
-                        @{
-                            var base64 = Convert.ToBase64String(item.Foto);
-                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                        }
-                        <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
-                    </td>
-                }*@
             <td>
                 @Html.ActionLink("Edit", "Edit", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
                 @*@Html.ActionLink("Details", "Details", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })*@
@@ -80,7 +58,7 @@
                 @if (!Session["UsuarioID"].ToString().Equals(item.UsuarioID.ToString()))
                 {
                     @Html.ActionLink("Adotar", "Adotar", "Animal", new { id = item.AnimalID },
-                   new { @class = "btn btn-primary", onclick = "return confirm('Deseja adotar o animal ?');" } )
+                   new { @class = "btn btn-primary", onclick = "return confirm('Deseja adotar o animal ?');" })
                 }
             </td>
         </tr>

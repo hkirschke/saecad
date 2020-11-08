@@ -211,6 +211,10 @@
     <Compile Include="Migrations\202010291250048_tablePessoa.Designer.cs">
       <DependentUpon>202010291250048_tablePessoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011082000164_addColunaStatusVacina.cs" />
+    <Compile Include="Migrations\202011082000164_addColunaStatusVacina.Designer.cs">
+      <DependentUpon>202011082000164_addColunaStatusVacina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal\Animal.cs" />
     <Compile Include="Models\Animal\AnimalViewModel.cs" />
@@ -341,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010291250048_tablePessoa.resx">
       <DependentUpon>202010291250048_tablePessoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011082000164_addColunaStatusVacina.resx">
+      <DependentUpon>202011082000164_addColunaStatusVacina.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
