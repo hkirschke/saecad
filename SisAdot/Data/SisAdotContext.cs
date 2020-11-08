@@ -1,5 +1,4 @@
-﻿using SisAdot.Models.Animal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -31,45 +30,5 @@ namespace SisAdot.Data
         public System.Data.Entity.DbSet<SisAdot.Models.Endereco> Enderecoes { get; set; }
 
         public System.Data.Entity.DbSet<SisAdot.Models.Pessoa.Pessoa> Pessoas { get; set; }
-
-        /// <summary>
-        /// Retorna lista de AnimalViewModel, animais para doação 
-        /// </summary>
-        /// <returns></returns>
-        public List<AnimalViewModel> AnimaisDoacoes()
-        {
-            List<AnimalViewModel> animaisDoacao = (from animalList in this.Animals.ToList()
-                                                   where animalList.Situacao == Enums.Situacao.Disponível
-                                                   select new AnimalViewModel
-                                                   {
-                                                       AnimalID = animalList.AnimalID,
-                                                       Nome = animalList.Nome,
-                                                       Idade = animalList.Idade,
-                                                       Situacao = animalList.Situacao,
-                                                       RacaAnimal = animalList.RacaAnimal,
-                                                       TamanhoAnimal = animalList.TamanhoAnimal,
-                                                       UsuarioID = animalList.UsuarioID,
-                                                       ByteFoto = animalList.Foto,
-                                                       Resenha = animalList.Resenha
-                                                   }).ToList();
-            return animaisDoacao;
-        }
-
-        public List<AnimalViewModel> GetAnimaisUsuario(Guid usuarioID)
-        {
-            List<AnimalViewModel> animaisDoacao = (from animalList in this.Animals.ToList()
-                                                   where animalList.UsuarioID == usuarioID
-                                                   select new AnimalViewModel
-                                                   {
-                                                       AnimalID = animalList.AnimalID,
-                                                       Nome = animalList.Nome,
-                                                       Idade = animalList.Idade,
-                                                       Situacao = animalList.Situacao,
-                                                       RacaAnimal = animalList.RacaAnimal,
-                                                       TamanhoAnimal = animalList.TamanhoAnimal,
-                                                       UsuarioID = animalList.UsuarioID
-                                                   }).ToList();
-            return animaisDoacao;
-        }
     }
 }

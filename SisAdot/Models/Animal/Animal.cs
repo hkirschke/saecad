@@ -26,7 +26,5 @@ namespace SisAdot.Models.Animal
         public Situacao Situacao { get; set; }
         public string Resenha { get; set; }
         public byte[] Foto { get; set; }
-
-        public bool StatusVacina { get; set; }
     }
 }

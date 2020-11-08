@@ -1,4 +1,49 @@
-﻿<!DOCTYPE html>
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <script>
+
+        </script>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,15 +51,14 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <style>
-        .navbar-inverse {
-            background-color: #fff;
-            border-color: #f2dede;
-        }
-    </style>
+
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/popper.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
 </head>
-<body> 
-    <div class="navbar navbar-inverse-branca navbar-fixed-top">
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,9 +66,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="~/Home/index">
-                    <img src="~/img/logo.svg" width="100" height="30" alt="" />
-                </a>
+                @Html.ActionLink("Seja um Herói", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -38,6 +80,7 @@
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Usuários", "Index", "Usuario")</li>
                                 <li>@Html.ActionLink("Criar Usuário", "Create", "Usuario")</li>
+                                @*<li>@Html.ActionLink("Cadastro de Pessoa", "Index", "Pessoa")</li>*@
                             </ul>
                         </li>
                     }
@@ -67,6 +110,18 @@
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Endereço", "Edit", "Endereco")</li>
+                    @*<li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gráficos   <span class="caret"></span> </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Gráfico de saída", "Sobre", "Grafico")</li>
+                                <li>@Html.ActionLink("Gráfico de entradas", "Sobre", "Grafico")</li>
+                                <li>@Html.ActionLink("Entrada vs Saídas", "Sobre", "Grafico")</li>
+                                <li>@Html.ActionLink("Saldo Mensal por Conta", "Sobre", "Grafico")</li>
+                            </ul>
+                        </li>*@
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Sobre", "Sobre", "Home")</li>
                 </ul>
             </div>
         </div>

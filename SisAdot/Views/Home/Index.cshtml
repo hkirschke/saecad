@@ -1,6 +1,4 @@
-﻿@model IEnumerable<SisAdot.Models.Animal.AnimalViewModel>
-
-@{
+﻿@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -33,100 +31,76 @@
 
     </div>
     <hr>
+
+
     <div class="row">
-        @foreach (var item in Model)
-        {
-            if (item.ByteFoto != null)
-            {
-                <div class="col-md-6 col-lg-4">
-                    <div class="card" style="width: 18rem; margin:1%">
 
-                        <div class="content">
-                            @{
-                                var base64 = Convert.ToBase64String(item.ByteFoto);
-                                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                            }
-                            <img src="@imgSrc" class="card-img-top" style="width:200px; height:200px;" />
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">@item.RacaAnimal</h5>
-                            <p class="card-text">@item.Resenha</p>
-                            @Html.ActionLink("Mais informações", "Edit", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
-                        </div>
-                    </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/bulldog.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Bulldog</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
                 </div>
-            }
-        }
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/corgi.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Corgi</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/salsicha.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Salsicha</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/shitsu.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Shitsu</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/pug.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Pug</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card" style="width: 18rem; margin:1%">
+                <img src="~/img/lulu.jpg" class="card-img-top" style="width:200px; height:200px;">
+                <div class="card-body">
+                    <h5 class="card-title">Lulu</h5>
+                    <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
+                    <a href="#" class="btn btn-primary">Mais Informações</a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    @*<div class="row">
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card" style="width: 18rem; margin:1%">
-                    <img src="~/img/bulldog.jpg" class="card-img-top" style="width:200px; height:200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Bulldog</h5>
-                        <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
-                        <a href="#" class="btn btn-primary">Mais Informações</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card" style="width: 18rem; margin:1%">
-                    <img src="~/img/corgi.jpg" class="card-img-top" style="width:200px; height:200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Corgi</h5>
-                        <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
-                        <a href="#" class="btn btn-primary">Mais Informações</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card" style="width: 18rem; margin:1%">
-                    <img src="~/img/salsicha.jpg" class="card-img-top" style="width:200px; height:200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Salsicha</h5>
-                        <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
-                        <a href="#" class="btn btn-primary">Mais Informações</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card" style="width: 18rem; margin:1%">
-                    <img src="~/img/shitsu.jpg" class="card-img-top" style="width:200px; height:200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Shitsu</h5>
-                        <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
-                        <a href="#" class="btn btn-primary">Mais Informações</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card" style="width: 18rem; margin:1%">
-                    <img src="~/img/pug.jpg" class="card-img-top" style="width:200px; height:200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Pug</h5>
-                        <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
-                        <a href="#" class="btn btn-primary">Mais Informações</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card" style="width: 18rem; margin:1%">
-                    <img src="~/img/lulu.jpg" class="card-img-top" style="width:200px; height:200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Lulu</h5>
-                        <p class="card-text">Cachorro fofo, com nenhum problema de comportamento e muito bem criado.</p>
-                        <a href="#" class="btn btn-primary">Mais Informações</a>
-                    </div>
-                </div>
-            </div>
-        </div>*@
 
     <!-- Site footer -->
     <footer class="footer-distributed">
@@ -160,10 +134,10 @@
                 Buscamos facilitar o trabalho dos heróis.
             </p>
 
-            @*<div class="footer-icons">
+            <div class="footer-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>*@
+            </div>
 
         </div>
 

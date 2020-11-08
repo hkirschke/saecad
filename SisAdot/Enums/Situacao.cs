@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,7 +10,7 @@ namespace SisAdot.Enums
     {
         Adotado,
         Disponível,
-        [Display(Name = "Dono Próprio")] 
+        [Description("Dono Próprio")]
         DonoProprio
     }
 }

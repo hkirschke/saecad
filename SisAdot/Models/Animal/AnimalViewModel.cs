@@ -28,7 +28,5 @@ namespace SisAdot.Models.Animal
         public HttpPostedFileBase Imagem { get; set; }
 
         public byte[] ByteFoto { get; set; }
-
-        public bool StatusVacina { get; set; }
     }
 }
