@@ -13,33 +13,34 @@
 <table class="table">
     <tr>
         <th>
-           Entrada
+            Data Consulta
         </th>
         <th>
-           Saída
+            Previsão da Saída
         </th>
         <th>
             Animal
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataEntrada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataSaida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeAnimal)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", "FichaCastracao", new { id=item.CastracaoID }, new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("Details", "Details", "FichaCastracao", new { id=item.CastracaoID }, new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("Delete", "Delete", "FichaCastracao", new { id=item.CastracaoID }, new { @class = "btn btn-primary" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataSaida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeAnimal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "FichaCastracao", new { id = item.CastracaoID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Details", "Details", "FichaCastracao", new { id = item.CastracaoID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Delete", "FichaCastracao", new { id = item.CastracaoID }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
 
 </table>

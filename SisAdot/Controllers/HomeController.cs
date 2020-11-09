@@ -1,4 +1,5 @@
-﻿using SisAdot.Models.Animal;
+﻿using SisAdot.Extensions;
+using SisAdot.Models.Animal;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -10,8 +11,8 @@ namespace SisAdot.Controllers
     public class HomeController : BaseController
     {
         public override ActionResult Index()
-        {
-            List<AnimalViewModel> animaisDoacao = _sisAdotContext.AnimaisDoacoes();
+        { 
+            List<AnimalViewModel> animaisDoacao = _sisAdotContextAnimalUtil.AnimaisDoacoes();
             return View(animaisDoacao);
         }
     }

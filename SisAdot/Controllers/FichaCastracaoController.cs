@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SisAdot.Data;
+using SisAdot.Extensions;
 using SisAdot.Models;
 using SisAdot.Models.Animal;
 
@@ -14,6 +15,7 @@ namespace SisAdot.Controllers
 {
     public class FichaCastracaoController : BaseController
     {
+        private const string MensagemConflitoAgenda = "Conflito de agenda, deve possuir ao menos 20 minutos entre as consultas!";
         // GET: FichaCastracao
         public override ActionResult Index()
         {
@@ -50,21 +52,8 @@ namespace SisAdot.Controllers
         // GET: FichaCastracao/Create
         public ActionResult Create()
         {
-            GetAnimaisUsuario();
+            ViewBag.Animais = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
             return View();
-        }
-
-        private void GetAnimaisUsuario()
-        {
-            var animais = (from animalList in _sisAdotContext.Animals.ToList()
-                           where animalList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
-                           select new
-                           {
-                               animalList.AnimalID,
-                               animalList.Nome
-                           }).ToList(); 
-
-            ViewBag.Animais = animais;
         }
 
         // POST: FichaCastracao/Create
@@ -74,16 +63,21 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID")] FichaCastracao fichaCastracao)
         {
-            if (ModelState.IsValid)
+            if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada))
             {
-                fichaCastracao.UsuarioID = new Guid(Session["UsuarioID"].ToString());
-                fichaCastracao.CastracaoID = Guid.NewGuid();
-                _sisAdotContext.FichaCastracaos.Add(fichaCastracao);
-                _sisAdotContext.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    fichaCastracao.UsuarioID = new Guid(Session["UsuarioID"].ToString());
+                    fichaCastracao.CastracaoID = Guid.NewGuid();
+                    _sisAdotContext.FichaCastracaos.Add(fichaCastracao);
+                    _sisAdotContext.SaveChanges();
+                    AddNotificacaoSucesso("Consulta Agendada");
+                    return RedirectToAction("Index");
+                }
+                return View(fichaCastracao);
             }
-
-            return View(fichaCastracao);
+            AddNotificacaoAviso(MensagemConflitoAgenda);
+            return View("Edit", fichaCastracao);
         }
 
         // GET: FichaCastracao/Edit/5
@@ -93,28 +87,13 @@ namespace SisAdot.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GetAnimaisUsuario();
+            _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
             FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
             if (fichaCastracao == null)
             {
                 return HttpNotFound();
             }
-
-            //var fichaCastracaoModel = ConvertFichaCastracaoToViewModel(fichaCastracao);
-
             return View(fichaCastracao);
-        }
-
-        private static FichaCastracaoViewModel ConvertFichaCastracaoToViewModel(FichaCastracao fichaCastracao)
-        {
-            return new FichaCastracaoViewModel
-            {
-                AnimalID = fichaCastracao.AnimalID,
-                CastracaoID = fichaCastracao.CastracaoID,
-                DataEntrada = fichaCastracao.DataEntrada.ToString("dd/MM/yyyy"),
-                DataSaida = fichaCastracao.DataSaida.ToString("dd/MM/yyyy"),
-                UsuarioID = fichaCastracao.UsuarioID
-            };
         }
 
         // POST: FichaCastracao/Edit/5
@@ -124,15 +103,21 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID")] FichaCastracao fichaCastracao)
         {
-            GetAnimaisUsuario();
-            if (ModelState.IsValid)
+            if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada))
             {
-                fichaCastracao.UsuarioID = new Guid(Session["UsuarioID"].ToString());
-                _sisAdotContext.Entry(fichaCastracao).State = EntityState.Modified;
-                _sisAdotContext.SaveChanges();
-                return RedirectToAction("Index");
+                _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+                if (ModelState.IsValid)
+                {
+                    fichaCastracao.UsuarioID = new Guid(Session["UsuarioID"].ToString());
+                    _sisAdotContext.Entry(fichaCastracao).State = EntityState.Modified;
+                    _sisAdotContext.SaveChanges();
+                    AddNotificacaoSucesso("Consulta Alterada");
+                    return RedirectToAction("Index");
+                }
+                return View(fichaCastracao);
             }
-            return View(fichaCastracao);
+            this.AddNotification(MensagemConflitoAgenda, NotificationType.ERROR);
+            return View("Edit", fichaCastracao);
         }
 
         // GET: FichaCastracao/Delete/5
@@ -156,6 +141,18 @@ namespace SisAdot.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
+            _sisAdotContext.FichaCastracaos.Remove(fichaCastracao);
+            _sisAdotContext.SaveChanges();
+            AddNotificacaoSucesso("Consulta desmarcada");
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Desmarcar(Guid id)
+        {
+            FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
+            fichaCastracao.DataEntrada =
             _sisAdotContext.FichaCastracaos.Remove(fichaCastracao);
             _sisAdotContext.SaveChanges();
             return RedirectToAction("Index");

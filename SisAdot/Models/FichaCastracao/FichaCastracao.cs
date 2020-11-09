@@ -19,9 +19,9 @@ namespace SisAdot.Models
         //[DataType(DataType.Date, ErrorMessage = "Somente datas permitidas")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
-        public DateTime DataSaida { get; set; } 
+        public DateTime DataSaida { get; set; }
         public Guid UsuarioID { get; set; }
-
         public Guid AnimalID { get; set; }
+        //public Guid EquipeVeterinarioID { get; set; }
     }
 }

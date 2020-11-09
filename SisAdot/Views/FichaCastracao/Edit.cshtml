@@ -20,7 +20,7 @@
         @Html.HiddenFor(model => model.UsuarioID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DataEntrada, "Data Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DataEntrada, "Data Consulta(Entrada)", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DataEntrada, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
                 @*@Html.TextBoxFor(model => model.DataEntrada, new { @type = "date", @class = "form-control datepicker", @Value = Model.DataEntrada.ToString("yyyy-MM-dd") })*@

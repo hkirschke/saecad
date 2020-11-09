@@ -19,14 +19,14 @@ namespace SisAdot.Controllers
         // GET: Animal
         public override ActionResult Index()
         {
-            List<AnimalViewModel> animaisUsuario = _sisAdotContext.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+            List<AnimalViewModel> animaisUsuario = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
             ViewBag.Title = "Meus Animais";
             return View(animaisUsuario);
         }
 
         public ActionResult AnimaisDoacoes()
         {
-            List<AnimalViewModel> animaisDoacao = _sisAdotContext.AnimaisDoacoes();
+            List<AnimalViewModel> animaisDoacao = _sisAdotContextAnimalUtil.AnimaisDoacoes();
             ViewBag.Title = "Animais para doação";
             return View("Index", animaisDoacao);
         }
@@ -219,7 +219,7 @@ namespace SisAdot.Controllers
 
             _sisAdotContext.Entry(animal).State = EntityState.Modified;
             _sisAdotContext.SaveChanges();
-            List<AnimalViewModel> animaisUsuario = _sisAdotContext.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+            List<AnimalViewModel> animaisUsuario = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
             return View("Index", animaisUsuario);
         }
     }

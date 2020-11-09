@@ -1,4 +1,5 @@
 ﻿using SisAdot.Enums;
+using SisAdot.Extensions;
 using SisAdot.Models;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace SisAdot.Controllers
             var usuarioEncontrado = user.FirstOrDefault();
             if (usuarioEncontrado != null)
             {
+                this.AddNotification($"Bem vindo Herói!", NotificationType.INFO);
                 Session["Perfil"] = usuarioEncontrado.PerfilUsuario;
                 Session["UsuarioID"] = usuarioEncontrado.UsuarioID;
                 //if (usuarioEncontrado.PerfilUsuario == PerfilUsuario.Administrador)
@@ -35,7 +37,7 @@ namespace SisAdot.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Login/senha Inválido");
+                this.AddNotification("Login/senha Inválido", NotificationType.ERROR); 
             }
             return View("Index");
         }
