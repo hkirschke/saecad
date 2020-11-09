@@ -7,12 +7,12 @@ using System.Web;
 
 namespace SisAdot.Models
 {
-    //[Table("EquipeVeterinario")]
-    //public class EquipeVeterinario
-    //{
-    //    [Key]
-    //    public Guid EquipeVeterinarioID { get; set; } 
-    //    [Required]
-    //    public string Nome { get; set; }
-    //}
+    [Table("EquipeVeterinario")]
+    public class EquipeVeterinario
+    {
+        [Key]
+        public Guid EquipeVeterinarioID { get; set; }
+        [Required]
+        public string Nome { get; set; }
+    }
 }

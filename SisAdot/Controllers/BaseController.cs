@@ -31,17 +31,23 @@ namespace SisAdot.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// {0} realizado com sucesso!
+        /// </summary>
         public void AddNotificacaoSucesso(string acao)
         {
             this.AddNotification(string.Format(MensgemSucessoPadrao, acao), Extensions.NotificationType.SUCCESS);
         }
-
+        /// <summary>
+        /// Atenção! \n{0}
+        /// </summary>
         public void AddNotificacaoAviso(string acao)
         {
             this.AddNotification(string.Format(MensgemSucessoPadrao, acao), Extensions.NotificationType.WARNING);
         }
-
+        /// <summary>
+        /// Erro ao efetuar \n{0}!
+        /// </summary>
         public void AddNotificacaoErro(string acao)
         {
             this.AddNotification(string.Format(MensgemSucessoPadrao, acao), Extensions.NotificationType.ERROR);

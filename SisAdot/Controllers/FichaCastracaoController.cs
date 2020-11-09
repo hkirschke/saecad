@@ -22,13 +22,16 @@ namespace SisAdot.Controllers
             List<FichaCastracaoViewModel> agendamentosUsuario = (from agendamentosList in _sisAdotContext.FichaCastracaos.ToList()
                                                                  join animalList in _sisAdotContext.Animals.ToList()
                                                                  on agendamentosList.AnimalID equals animalList.AnimalID
+                                                                 join equipeVetList in _sisAdotContext.EquipeVeterinarios.ToList()
+                                                                 on agendamentosList.EquipeVeterinarioID equals equipeVetList.EquipeVeterinarioID
                                                                  where agendamentosList.UsuarioID == new Guid(Session["UsuarioID"].ToString())
                                                                  select new FichaCastracaoViewModel
                                                                  {
                                                                      NomeAnimal = animalList.Nome,
                                                                      CastracaoID = agendamentosList.CastracaoID,
-                                                                     DataEntrada = agendamentosList.DataEntrada.ToString("dd/MM/yyyy"),
-                                                                     DataSaida = agendamentosList.DataSaida.ToString("dd/MM/yyyy")
+                                                                     DataEntrada = agendamentosList.DataEntrada?.ToString("dd/MM/yyyy"),
+                                                                     DataSaida = agendamentosList.DataSaida?.ToString("dd/MM/yyyy"),
+                                                                     NomeEquipe = equipeVetList.Nome
                                                                  }).ToList();
 
             return View(agendamentosUsuario);
@@ -53,6 +56,7 @@ namespace SisAdot.Controllers
         public ActionResult Create()
         {
             ViewBag.Animais = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+            ViewBag.EquipeVet = _sisAdotContext.EquipeVeterinarios.ToList();
             return View();
         }
 
@@ -63,7 +67,7 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID")] FichaCastracao fichaCastracao)
         {
-            if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada))
+            if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada, fichaCastracao.EquipeVeterinarioID))
             {
                 if (ModelState.IsValid)
                 {
@@ -87,7 +91,8 @@ namespace SisAdot.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+            ViewBag.Animais = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+            ViewBag.EquipeVet = _sisAdotContext.EquipeVeterinarios.ToList();
             FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
             if (fichaCastracao == null)
             {
@@ -103,9 +108,10 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID")] FichaCastracao fichaCastracao)
         {
-            if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada))
+            if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada, fichaCastracao.EquipeVeterinarioID))
             {
-                _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+                ViewBag.Animais = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+                ViewBag.EquipeVet = _sisAdotContext.EquipeVeterinarios.ToList();
                 if (ModelState.IsValid)
                 {
                     fichaCastracao.UsuarioID = new Guid(Session["UsuarioID"].ToString());
@@ -152,9 +158,10 @@ namespace SisAdot.Controllers
         public ActionResult Desmarcar(Guid id)
         {
             FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
-            fichaCastracao.DataEntrada =
-            _sisAdotContext.FichaCastracaos.Remove(fichaCastracao);
+            fichaCastracao.DataEntrada = null;
+            fichaCastracao.DataSaida = null;
             _sisAdotContext.SaveChanges();
+            AddNotificacaoSucesso("Consulta disponibilzada para reagendamento");
             return RedirectToAction("Index");
         }
 

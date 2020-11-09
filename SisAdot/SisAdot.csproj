@@ -169,6 +169,7 @@
     <Compile Include="Controllers\AnimalController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EnderecoController.cs" />
+    <Compile Include="Controllers\EquipeVeterinarioController.cs" />
     <Compile Include="Controllers\FichaCastracaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -221,6 +222,10 @@
     <Compile Include="Migrations\202011082000164_addColunaStatusVacina.cs" />
     <Compile Include="Migrations\202011082000164_addColunaStatusVacina.Designer.cs">
       <DependentUpon>202011082000164_addColunaStatusVacina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011092245372_equipeVeterinario_DatetimeNull.cs" />
+    <Compile Include="Migrations\202011092245372_equipeVeterinario_DatetimeNull.designer.cs">
+      <DependentUpon>202011092245372_equipeVeterinario_DatetimeNull.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Animal\Animal.cs" />
@@ -317,6 +322,11 @@
     <Content Include="Views\Pessoa\Edit.cshtml" />
     <Content Include="Views\Pessoa\Index.cshtml" />
     <Content Include="Views\Shared\_Notifications.cshtml" />
+    <Content Include="Views\EquipeVeterinario\Create.cshtml" />
+    <Content Include="Views\EquipeVeterinario\Delete.cshtml" />
+    <Content Include="Views\EquipeVeterinario\Details.cshtml" />
+    <Content Include="Views\EquipeVeterinario\Edit.cshtml" />
+    <Content Include="Views\EquipeVeterinario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -362,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011082000164_addColunaStatusVacina.resx">
       <DependentUpon>202011082000164_addColunaStatusVacina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011092245372_equipeVeterinario_DatetimeNull.resx">
+      <DependentUpon>202011092245372_equipeVeterinario_DatetimeNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

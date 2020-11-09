@@ -11,10 +11,11 @@ namespace SisAdot.Models
     {
         public Guid CastracaoID { get; set; }
         public string DataEntrada { get; set; }
-        public string DataSaida { get; set; }  
-        public string NomeAnimal  { get; set; } 
-        public Guid AnimalID { get; set; } 
+        public string DataSaida { get; set; }
+        public string NomeAnimal { get; set; }
+        public Guid AnimalID { get; set; }
         public Guid UsuarioID { get; set; }
-        //public Guid EquipeVeterinarioID { get; set; }
+        public Guid EquipeVeterinarioID { get; set; }
+        public string NomeEquipe { get; set; }
     }
 }

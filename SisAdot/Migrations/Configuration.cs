@@ -19,18 +19,8 @@ namespace SisAdot.Migrations
         {
             var UsuarioAdmin = new Guid("8807B82C-D6AE-464F-B3A8-1904900F7150");
             var UsuarioNaoAdmin = new Guid("E90C50D7-7C58-4A1F-9C7C-2CD446EDDAF3");
-            //  This method will be called after migrating to the latest version.
+            //  This method will be called after migrating to the latest version. 
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            // 
             context.Usuarios.AddOrUpdate(
               p => p.UsuarioID,
               new Usuario { Login = "admin", Email = "henrique@teste.com", PerfilUsuario = Enums.PerfilUsuario.Administrador, Senha = "123456", UsuarioID = UsuarioAdmin },
@@ -70,6 +60,13 @@ namespace SisAdot.Migrations
                     Resenha = "Teste3",
                     AnimalID = new Guid("c59270c9-bf04-41f0-891a-4d6bcc5b2c88")
                 }
+               );
+
+            context.EquipeVeterinarios.AddOrUpdate(
+               b => b.EquipeVeterinarioID,
+               new EquipeVeterinario { EquipeVeterinarioID = new Guid("305ac71b-5371-4eab-aa37-742346f558b3"), Nome = "Superman" },
+               new EquipeVeterinario { EquipeVeterinarioID = new Guid("dffe3aa9-c77d-4bea-a78f-dec5f24f13cc"), Nome = "Batman" },
+               new EquipeVeterinario { EquipeVeterinarioID = new Guid("dd763414-4410-4243-87fa-ba9cea0ed6ca"), Nome = "SpiderMan" }
                );
         }
     }

@@ -13,15 +13,15 @@ namespace SisAdot.Models
         [Key]
         public Guid CastracaoID { get; set; }
         //[DataType(DataType.Date, ErrorMessage = "Somente datas permitidas")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
-        public DateTime DataEntrada { get; set; }
+        public DateTime? DataEntrada { get; set; }
         //[DataType(DataType.Date, ErrorMessage = "Somente datas permitidas")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
-        public DateTime DataSaida { get; set; }
+        public DateTime? DataSaida { get; set; }
         public Guid UsuarioID { get; set; }
-        public Guid AnimalID { get; set; }
-        //public Guid EquipeVeterinarioID { get; set; }
+        public Guid AnimalID { get; set; } 
+        public Guid EquipeVeterinarioID { get; set; }
     }
 }

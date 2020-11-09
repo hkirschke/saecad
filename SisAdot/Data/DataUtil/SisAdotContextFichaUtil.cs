@@ -22,15 +22,21 @@ namespace SisAdot.DataUtil
         /// Verifica se há um agendamento com menos de 20 minutos de diferença
         /// </summary>
         /// <returns></returns>
-        public bool ValidaAgenda(DateTime horaMarcacao)
+        public bool ValidaAgenda(DateTime? horaMarcacao, Guid equipeID)
         {
-            List<FichaCastracao> ListAgendainvalida = (from fichaList in FichaCastracaos.ToList()
-                                                       where (fichaList.DataEntrada.Subtract(horaMarcacao)).TotalMinutes > 20
-                                                       select new FichaCastracao
-                                                       {
-                                                           CastracaoID = fichaList.CastracaoID
-                                                       }).ToList();
-            return ListAgendainvalida.Any();
+            if (horaMarcacao != null)
+            {
+                var newhoraMarcacao = Convert.ToDateTime(horaMarcacao);
+                List<FichaCastracao> ListAgendainvalida = (from fichaList in FichaCastracaos.ToList()
+                                                           where (fichaList.DataEntrada?.Subtract(newhoraMarcacao))?.TotalMinutes > 20
+                                                           && fichaList.EquipeVeterinarioID == equipeID
+                                                           select new FichaCastracao
+                                                           {
+                                                               CastracaoID = fichaList.CastracaoID
+                                                           }).ToList();
+                return ListAgendainvalida.Any();
+            }
+            return true;
         }
     }
 }
