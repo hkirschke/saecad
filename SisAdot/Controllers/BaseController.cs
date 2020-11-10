@@ -43,14 +43,14 @@ namespace SisAdot.Controllers
         /// </summary>
         public void AddNotificacaoAviso(string acao)
         {
-            this.AddNotification(string.Format(MensgemSucessoPadrao, acao), Extensions.NotificationType.WARNING);
+            this.AddNotification(string.Format(MensgemAvisoPadrao, acao), Extensions.NotificationType.WARNING);
         }
         /// <summary>
         /// Erro ao efetuar \n{0}!
         /// </summary>
         public void AddNotificacaoErro(string acao)
         {
-            this.AddNotification(string.Format(MensgemSucessoPadrao, acao), Extensions.NotificationType.ERROR);
+            this.AddNotification(string.Format(MensgemErroPadrao, acao), Extensions.NotificationType.ERROR);
         }
 
         public void AddNotificacaoInformacao(string acao)

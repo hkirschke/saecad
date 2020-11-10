@@ -16,7 +16,7 @@ namespace SisAdot.Controllers
 {
     public class FichaCastracaoController : BaseController
     {
-        private const string MensagemConflitoAgenda = "Conflito de agenda, deve possuir ao menos 20 minutos entre as consultas!";
+        private const string MensagemConflitoAgenda = "Conflito de agenda da equipe,  as consultas devem possuir ao menos 20 minutos entre elas!\n Consulta agendada para as {0}";
         private readonly CultureInfo CultureInfo = CultureInfo.CreateSpecificCulture("fr-FR");
 
         // GET: FichaCastracao
@@ -70,7 +70,8 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID, EquipeVeterinarioID")] FichaCastracao fichaCastracao)
         {
-            if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada, fichaCastracao.EquipeVeterinarioID))
+            var listConsultas = _sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada, fichaCastracao.EquipeVeterinarioID);
+            if (!listConsultas.Any())
             {
                 if (ModelState.IsValid)
                 {
@@ -83,7 +84,7 @@ namespace SisAdot.Controllers
                 }
                 return View(fichaCastracao);
             }
-            AddNotificacaoAviso(MensagemConflitoAgenda);
+            AddNotificacaoAviso(string.Format(MensagemConflitoAgenda, listConsultas.FirstOrDefault().DataEntrada?.ToString("g", CultureInfo)));
             return View("Edit", fichaCastracao);
         }
 
@@ -112,7 +113,8 @@ namespace SisAdot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID, EquipeVeterinarioID")] FichaCastracao fichaCastracao)
         {
-            if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada, fichaCastracao.EquipeVeterinarioID))
+            var listConsultas = _sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada, fichaCastracao.EquipeVeterinarioID);
+            if (!listConsultas.Any())
             {
                 ViewBag.Animais = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
                 ViewBag.EquipeVet = _sisAdotContext.EquipeVeterinarios.ToList();
@@ -126,7 +128,10 @@ namespace SisAdot.Controllers
                 }
                 return View(fichaCastracao);
             }
-            this.AddNotification(MensagemConflitoAgenda, NotificationType.ERROR);
+            ViewBag.Animais = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+            ViewBag.EquipeVet = _sisAdotContext.EquipeVeterinarios.ToList();
+            fichaCastracao = _sisAdotContext.FichaCastracaos.Find(fichaCastracao.CastracaoID);
+            AddNotificacaoAviso(string.Format(MensagemConflitoAgenda, listConsultas.FirstOrDefault().DataEntrada?.ToString("g", CultureInfo)));
             return View("Edit", fichaCastracao);
         }
 
