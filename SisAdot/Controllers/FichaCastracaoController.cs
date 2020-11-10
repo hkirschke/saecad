@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,6 +17,8 @@ namespace SisAdot.Controllers
     public class FichaCastracaoController : BaseController
     {
         private const string MensagemConflitoAgenda = "Conflito de agenda, deve possuir ao menos 20 minutos entre as consultas!";
+        private readonly CultureInfo CultureInfo = CultureInfo.CreateSpecificCulture("fr-FR");
+
         // GET: FichaCastracao
         public override ActionResult Index()
         {
@@ -29,8 +32,8 @@ namespace SisAdot.Controllers
                                                                  {
                                                                      NomeAnimal = animalList.Nome,
                                                                      CastracaoID = agendamentosList.CastracaoID,
-                                                                     DataEntrada = agendamentosList.DataEntrada?.ToString("dd/MM/yyyy"),
-                                                                     DataSaida = agendamentosList.DataSaida?.ToString("dd/MM/yyyy"),
+                                                                     DataEntrada = agendamentosList.DataEntrada?.ToString("g", CultureInfo),
+                                                                     DataSaida = agendamentosList.DataSaida?.ToString("g", CultureInfo),
                                                                      NomeEquipe = equipeVetList.Nome
                                                                  }).ToList();
 
@@ -94,6 +97,7 @@ namespace SisAdot.Controllers
             ViewBag.Animais = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
             ViewBag.EquipeVet = _sisAdotContext.EquipeVeterinarios.ToList();
             FichaCastracao fichaCastracao = _sisAdotContext.FichaCastracaos.Find(id);
+
             if (fichaCastracao == null)
             {
                 return HttpNotFound();
