@@ -22,7 +22,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DataEntrada, "Data Consulta(Entrada)", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DataEntrada, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+            @Html.EditorFor(model => model.DataEntrada, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
             @*@Html.TextBoxFor(model => model.DataEntrada, new { @type = "date", @class = "form-control datepicker", @Value = Model.DataEntrada.ToString("yyyy-MM-dd") })*@
             @Html.ValidationMessageFor(model => model.DataEntrada, "", new { @class = "text-danger" })
         </div>
@@ -32,7 +32,7 @@
         @Html.LabelFor(model => model.DataSaida, "Data Saída", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @*@Html.TextBoxFor(model => model.DataSaida, new { @type = "date", @class = "form-control datepicker", @Value = Model.DataSaida.ToString("yyyy-MM-dd") })*@
-            @Html.EditorFor(model => model.DataSaida, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+            @Html.EditorFor(model => model.DataSaida, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
             @Html.ValidationMessageFor(model => model.DataSaida, "", new { @class = "text-danger" })
         </div>
     </div>

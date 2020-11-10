@@ -65,7 +65,7 @@ namespace SisAdot.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID")] FichaCastracao fichaCastracao)
+        public ActionResult Create([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID, EquipeVeterinarioID")] FichaCastracao fichaCastracao)
         {
             if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada, fichaCastracao.EquipeVeterinarioID))
             {
@@ -106,7 +106,7 @@ namespace SisAdot.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID")] FichaCastracao fichaCastracao)
+        public ActionResult Edit([Bind(Include = "CastracaoID,DataEntrada,DataSaida,AnimalID, EquipeVeterinarioID")] FichaCastracao fichaCastracao)
         {
             if (!_sisAdotContextFichaUtil.ValidaAgenda(fichaCastracao.DataEntrada, fichaCastracao.EquipeVeterinarioID))
             {
