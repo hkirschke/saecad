@@ -5,26 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@Html.ActionLink("Agendar nova consulta", "Create")</h2>
 
-<p>
-    @Html.ActionLink("Agendar nova consulta", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Data Consulta
-        </th>
-        <th>
-            Previsão da Saída
-        </th>
-        <th>
-            Animal
-        </th>
-        <th>
-            Equipe Responsável
-        </th>
-    </tr>
+<h3>
+    Consultas disponíveis
+    @*@Html.ActionLink("Agendar nova consulta", "Create")*@
+</h3>
+<hr />
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Data Consulta
+            </th>
+            <th>
+                Previsão da Saída
+            </th>
+            <th>
+                Animal
+            </th>
+            <th>
+                Equipe Responsável
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model)
     {
@@ -49,5 +54,4 @@
             </td>
         </tr>
     }
-
 </table>

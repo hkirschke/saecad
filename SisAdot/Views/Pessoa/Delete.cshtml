@@ -5,9 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Deseja apagar o registro desta pessoa ?</h3>
 <div>
     <h4>Pessoa</h4>
     <hr />
@@ -74,7 +72,14 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @if (ViewBag.TipoPessoa.Equals(SisAdot.Enums.TipoPessoa.Fisica))
+            {
+                @Html.ActionLink("EditFisica", "Edit", new { id = Model.PessoaID }, htmlAttributes: new { @class = "btn btn-primary" })
+            }
+            else
+            {
+                @Html.ActionLink("EditJuridica", "Edit", new { id = Model.PessoaID }, htmlAttributes: new { @class = "btn btn-primary" })
+            }
         </div>
     }
 </div>

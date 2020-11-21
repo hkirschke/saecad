@@ -79,9 +79,9 @@
 <body>
 
     @using (Html.BeginForm("Autenticar", "Login", FormMethod.Post))
-    {
+    { 
         <section class="form my-4 mx-5">
-            <div class="container">
+            <div class="container"> 
                 <div class="row no-gutters">
                     <div class="col-lg-5">
                         <img src="../img/pets.jpg" class="img-fluid" alt="">
@@ -90,6 +90,7 @@
                         <h1 class="font-weight-bold py-3"><img src="../img/logoprojeto.png" class="img-fluid" alt=""></h1>
                         <h4>Entre com sua conta</h4>
                         <form>
+                            @Html.Partial("_Notifications")
                             <div class="form-row">
                                 <div class="col-lg-7">
                                     @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control my-3 p-4", placeholder = "Login" } })
@@ -105,25 +106,15 @@
                                     <input type="submit" value="Entrar" class="btn1 mt-3 mb-1" />
                                 </div>
                             </div>
-                            @*<div class="form-row">
-                                    <div class="col-lg-7">
-                                        <button type="submit" class="btn2 mb-3"><i class="fab fa-google mr-2"></i>Entrar com o Google</button>
-                                    </div>
-                                </div>*@
                             <p>Ainda não é um herói?<a href='@Url.Action("Create", "Usuario")'> Cadastre-se!</a></p>
-                            @*<p>Rota Teste<a href='@Url.Action("Index", "Home")'>Rota Teste</a></p>*@
                         </form>
                     </div>
                 </div>
             </div>
         </section>
     }
-
-    @*<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>*@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    @*<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>*@
     <script src="~/Scripts/popper.min.js"></script>
-    @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>*@
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
