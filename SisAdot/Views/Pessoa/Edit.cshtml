@@ -13,7 +13,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Pessoa</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PessoaID)
@@ -76,7 +75,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-2">
-                <input type="submit" value="Save" class="btn btn-default" onclick = "return confirm('Deseja atualizar o registro ?');" />
+                <input type="submit" value="Salvar" class="btn btn-default" onclick = "return confirm('Deseja atualizar o registro ?');" />
             </div>
             <div class="col-md-2">
                 @Html.ActionLink("Excluir", "Delete", "Pessoa", new { @class = "btn btn-primary" , onclick = "return confirm('Deseja adotar o animal ?');" })

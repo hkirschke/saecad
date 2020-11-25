@@ -16,7 +16,7 @@ namespace SisAdot.DataUtil
         // automatically whenever you change your model schema, please use data migrations.
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
-        
+
         /// <summary>
         /// Retorna lista de AnimalViewModel, animais para doação 
         /// </summary>
@@ -53,6 +53,25 @@ namespace SisAdot.DataUtil
                                                        RacaAnimal = animalList.RacaAnimal,
                                                        TamanhoAnimal = animalList.TamanhoAnimal,
                                                        UsuarioID = animalList.UsuarioID
+                                                   }).ToList();
+            return animaisDoacao;
+        }
+
+        public List<AnimalViewModel> AnimaisDesaparecidos()
+        {
+            List<AnimalViewModel> animaisDoacao = (from animalList in Animals.ToList()
+                                                   where animalList.Situacao == Enums.Situacao.Desaparecido
+                                                   select new AnimalViewModel
+                                                   {
+                                                       AnimalID = animalList.AnimalID,
+                                                       Nome = animalList.Nome,
+                                                       Idade = animalList.Idade,
+                                                       Situacao = animalList.Situacao,
+                                                       RacaAnimal = animalList.RacaAnimal,
+                                                       TamanhoAnimal = animalList.TamanhoAnimal,
+                                                       UsuarioID = animalList.UsuarioID,
+                                                       ByteFoto = animalList.Foto,
+                                                       Resenha = animalList.Resenha
                                                    }).ToList();
             return animaisDoacao;
         }

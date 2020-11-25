@@ -31,6 +31,13 @@ namespace SisAdot.Controllers
             return View("Index", animaisDoacao);
         }
 
+        public ActionResult AnimaisDesaparecidos()
+        {
+            List<AnimalViewModel> animaisDesaparecidos = _sisAdotContextAnimalUtil.AnimaisDesaparecidos();
+            ViewBag.Title = "Animais Desaparecidos";
+            return View("Index", animaisDesaparecidos);
+        }
+
         // GET: Animal/Details/5
         public ActionResult Details(Guid? id)
         {
