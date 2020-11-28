@@ -105,29 +105,15 @@ namespace SisAdot.Controllers
             return View(endereco);
         }
 
-        // GET: Endereco/Delete/5
         public ActionResult Delete()
         {
             var id = new Guid(Session["UsuarioID"].ToString());
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
             Endereco endereco = _sisAdotContext.Enderecoes.Find(id);
             if (endereco == null)
-            {
-                return HttpNotFound();
-            }
-            return View(endereco);
-        }
-
-        // POST: Endereco/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed()
-        {
-            var id = new Guid(Session["UsuarioID"].ToString());
-            Endereco endereco = _sisAdotContext.Enderecoes.Find(id);
+            { 
+                    AddNotificacaoAviso("Não há endereço cadastrado!");
+                    return RedirectToAction("Edit"); 
+            } 
             _sisAdotContext.Enderecoes.Remove(endereco);
             _sisAdotContext.SaveChanges();
             AddNotificacaoSucesso("Endereço excluído");

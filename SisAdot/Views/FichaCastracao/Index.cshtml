@@ -49,7 +49,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", "FichaCastracao", new { id = item.CastracaoID }, new { @class = "btn btn-primary" })
                 @*@Html.ActionLink("Details", "Details", "FichaCastracao", new { id = item.CastracaoID }, new { @class = "btn btn-primary" })*@
-                @Html.ActionLink("Apagar", "Delete", "FichaCastracao", new { id = item.CastracaoID }, new { @class = "btn btn-primary", onclick = "return confirm('Deseja excluir a consulta ?');" })
+                @Html.ActionLink("Excluir", "Delete", "FichaCastracao", new { id = item.CastracaoID }, new { @class = "btn btn-primary", onclick = "return confirm('Deseja excluir a consulta ?');" })
                 @*@Html.ActionLink("Desmarcar", "Desmarcar", "FichaCastracao", new { id = item.CastracaoID }, new { @class = "btn btn-primary", onclick = "return confirm('Deseja desmarcar a consulta ?');" })*@
             </td>
         </tr>
