@@ -1,6 +1,7 @@
 ﻿using SisAdot.Data;
 using SisAdot.DataUtil;
 using SisAdot.Extensions;
+using System.Globalization;
 using System.Web.Mvc;
 
 namespace SisAdot.Controllers
@@ -10,6 +11,7 @@ namespace SisAdot.Controllers
         protected readonly SisAdotContext _sisAdotContext = new SisAdotContext();
         protected readonly SisAdotContextAnimalUtil _sisAdotContextAnimalUtil = new SisAdotContextAnimalUtil();
         protected readonly SisAdotContextFichaUtil _sisAdotContextFichaUtil = new SisAdotContextFichaUtil();
+        protected readonly CultureInfo CultureInfo = CultureInfo.CreateSpecificCulture("fr-FR");
 
         /// <summary>
         /// {} realizado com sucesso!

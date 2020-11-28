@@ -17,8 +17,7 @@ namespace SisAdot.Controllers
     public class FichaCastracaoController : BaseController
     {
         private const string MensagemConflitoAgenda = "Conflito de agenda da equipe,  as consultas devem possuir ao menos 20 minutos entre elas!\n Consulta agendada para as {0}";
-        private readonly CultureInfo CultureInfo = CultureInfo.CreateSpecificCulture("fr-FR");
-
+         
         // GET: FichaCastracao
         public override ActionResult Index()
         {

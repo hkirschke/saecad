@@ -13,8 +13,7 @@ using SisAdot.Models.Pessoa;
 namespace SisAdot.Controllers
 {
     public class PessoaController : BaseController
-    {
-
+    { 
         // GET: Pessoa
         public override ActionResult Index()
         {
@@ -133,6 +132,7 @@ namespace SisAdot.Controllers
                     _sisAdotContext.SaveChanges();
                 }
             }
+            AddNotificacaoSucesso("Registro editado");
 
             if (ViewBag.TipoPessoa.Equals(TipoPessoa.Fisica))
                 return RedirectToAction("EditFisica", pessoa);
@@ -166,6 +166,7 @@ namespace SisAdot.Controllers
             _sisAdotContext.Pessoas.Remove(pessoa);
             _sisAdotContext.SaveChanges();
             pessoa = new Pessoa();
+            AddNotificacaoSucesso("Registro excluído");
 
             if (ViewBag.TipoPessoa.Equals(TipoPessoa.Fisica))
                 return RedirectToAction("EditFisica", pessoa);

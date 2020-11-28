@@ -65,11 +65,11 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Editar", "Edit", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
                 @*@Html.ActionLink("Details", "Details", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })*@
-                @Html.ActionLink("Delete", "Delete", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Excluir", "Delete", "Animal", new { id = item.AnimalID }, new { @class = "btn btn-primary" })
 
-                @if (!Session["UsuarioID"].ToString().Equals(item.UsuarioID.ToString()))
+                @if (!Session["UsuarioID"].ToString().Equals(item.UsuarioID.ToString()) && (item.Situacao != SisAdot.Enums.Situacao.Adotado && item.Situacao != SisAdot.Enums.Situacao.Desaparecido))
                 {
                     @Html.ActionLink("Adotar", "Adotar", "Animal", new { id = item.AnimalID },
                    new { @class = "btn btn-primary", onclick = "return confirm('Deseja adotar o animal ?');" })

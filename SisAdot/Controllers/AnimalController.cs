@@ -89,6 +89,8 @@ namespace SisAdot.Controllers
 
                 _sisAdotContext.Animals.Add(animal);
                 _sisAdotContext.SaveChanges();
+
+                AddNotificacaoSucesso("Registro criado");
                 return RedirectToAction("Index");
             }
 
@@ -155,6 +157,8 @@ namespace SisAdot.Controllers
 
                 _sisAdotContext.Entry(animal).State = EntityState.Modified;
                 _sisAdotContext.SaveChanges();
+
+                AddNotificacaoSucesso("Registro editado");
                 return RedirectToAction("Index");
             }
             return View(animalVM);
@@ -202,6 +206,7 @@ namespace SisAdot.Controllers
             Animal animal = _sisAdotContext.Animals.Find(id);
             _sisAdotContext.Animals.Remove(animal);
             _sisAdotContext.SaveChanges();
+            AddNotificacaoSucesso("Registro excluído");
             return RedirectToAction("Index");
         }
 
@@ -227,6 +232,8 @@ namespace SisAdot.Controllers
             _sisAdotContext.Entry(animal).State = EntityState.Modified;
             _sisAdotContext.SaveChanges();
             List<AnimalViewModel> animaisUsuario = _sisAdotContextAnimalUtil.GetAnimaisUsuario(new Guid(Session["UsuarioID"].ToString()));
+
+            AddNotificacaoSucesso("Adoção realizada");
             return View("Index", animaisUsuario);
         }
     }

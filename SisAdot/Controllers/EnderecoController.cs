@@ -52,6 +52,7 @@ namespace SisAdot.Controllers
                 //endereco.UsuarioID = Guid.NewGuid();
                 _sisAdotContext.Enderecoes.Add(endereco);
                 _sisAdotContext.SaveChanges();
+                AddNotificacaoSucesso("Endereço cadastrado");
                 return RedirectToAction("Index");
             }
 
@@ -90,11 +91,13 @@ namespace SisAdot.Controllers
                 {
                     _sisAdotContext.Enderecoes.Add(endereco);
                     _sisAdotContext.SaveChanges();
+                    AddNotificacaoSucesso("Endereço cadastrado");
                     return RedirectToAction("Edit");
                 }
                 else
                 {
                     _sisAdotContext.SaveChanges();
+                    AddNotificacaoSucesso("Endereço atualizado");
                     return RedirectToAction("Edit");
                 }
             }
@@ -127,6 +130,7 @@ namespace SisAdot.Controllers
             Endereco endereco = _sisAdotContext.Enderecoes.Find(id);
             _sisAdotContext.Enderecoes.Remove(endereco);
             _sisAdotContext.SaveChanges();
+            AddNotificacaoSucesso("Endereço excluído");
             return RedirectToAction("Edit");
         }
 

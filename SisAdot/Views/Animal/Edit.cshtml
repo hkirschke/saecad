@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-  
+
 <h2>Cadastro de Animal</h2>
 
 
@@ -98,10 +98,20 @@
         }
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-2">
-                <input type="submit" value="Salvar" class="btn btn-primary" onclick="return confirm('Deseja atualizar o registro ?');" />
+            <div class="col-md-offset-2 col-md-3">
+                <input type="submit" value="Salvar" class="btn btn-primary btn-lg btn-block" onclick="return confirm('Deseja atualizar o registro ?');" />
             </div>
         </div>
+         
+        @if (!Session["UsuarioID"].ToString().Equals(Model.UsuarioID.ToString()) && Model.Situacao != SisAdot.Enums.Situacao.Adotado && Model.Situacao != SisAdot.Enums.Situacao.Desaparecido)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-3">
+                    @Html.ActionLink("Adotar", "Adotar", "Animal", new { id = Model.AnimalID },
+                   new { @class = "btn btn-primary btn-lg btn-block", onclick = "return confirm('Deseja adotar o animal ?');" })
+                </div>
+            </div>
+        }
     </div>
 }
 
